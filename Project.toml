@@ -3,6 +3,9 @@ uuid = "9b93e728-2039-4145-a9ff-359da10f513c"
 authors = ["Alphonsus Adu-Bredu"]
 version = "0.1.0"
 
+[deps]
+PyBullet = "9e6df25e-3b2c-44c5-be37-b553c26be21f"
+
 [compat]
 julia = "1"
 
