@@ -16,3 +16,35 @@ struct Digit
         new(id, p, joint_names, joint_ids)
     end
 end
+
+
+mutable struct DigitSim 
+    vis::Visualizer 
+    mvis::Union{MechanismVisualizer, Nothing}
+    state::Union{MechanismState, Nothing} 
+    left_hand_ee::Union{Point3D, Nothing}
+    right_hand_ee::Union{Point3D, Nothing}
+    left_foot_ee::Union{Point3D, Nothing}
+    right_foot_ee::Union{Point3D, Nothing}
+    pelvis::Union{Point3D, Nothing}
+    left_foot_contact_points::Union{Vector{Point3D}, Nothing}
+    right_foot_contact_points::Union{Vector{Point3D}, Nothing}
+    θᵣ::Union{Vector{Float64}, Nothing} 
+    θ::Union{Vector{Float64}, Nothing}
+    θ̇ ::Union{Vector{Float64}, Nothing}
+    joints::Union{Vector, Nothing} 
+    Δt::Float64
+    g_left_ee::Union{Point3D, Nothing}
+    g_right_ee::Union{Point3D, Nothing}
+    world_frame 
+    leg_indices 
+    init_config
+    com_goal
+
+    function DigitSim(vis::Visualizer)
+        Δt = 10E-3 
+        leg_indices = [7, 9, 10, 19,21,22]
+        new(vis, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, 
+        nothing, nothing, nothing, nothing, [], Δt, nothing, nothing, nothing, leg_indices, nothing, nothing)
+    end
+end

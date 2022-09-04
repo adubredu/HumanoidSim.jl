@@ -398,13 +398,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-yaw-housing.obj"/>
+        <mesh filename="package://hip-yaw-housing.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-yaw-housing.obj"/>
+        <mesh filename="package://hip-yaw-housing.obj"/>
       </geometry>
     </collision>
   </link>
@@ -417,13 +417,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch-housing.obj"/>
+        <mesh filename="package://hip-pitch-housing.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch-housing.obj"/>
+        <mesh filename="package://hip-pitch-housing.obj"/>
       </geometry>
     </collision>
   </link>
@@ -436,13 +436,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch.obj"/>
+        <mesh filename="package://hip-pitch.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch.obj"/>
+        <mesh filename="package://hip-pitch.obj"/>
       </geometry>
     </collision>
   </link>
@@ -455,13 +455,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="knee.obj"/>
+        <mesh filename="package://knee.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="knee.obj"/>
+        <mesh filename="package://knee.obj"/>
       </geometry>
     </collision>
   </link>
@@ -474,13 +474,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="shin.obj"/>
+        <mesh filename="package://shin.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="shin.obj"/>
+        <mesh filename="package://shin.obj"/>
       </geometry>
     </collision>
   </link>
@@ -493,13 +493,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="tarsus.obj"/>
+        <mesh filename="package://tarsus.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="tarsus.obj"/>
+        <mesh filename="package://tarsus.obj"/>
       </geometry>
     </collision>
   </link>
@@ -512,13 +512,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-pitch.obj"/>
+        <mesh filename="package://toe-pitch.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-pitch.obj"/>
+        <mesh filename="package://toe-pitch.obj"/>
       </geometry>
     </collision>
   </link>
@@ -531,13 +531,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-roll.obj"/>
+        <mesh filename="package://toe-roll.obj"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-roll.obj"/>
+        <mesh filename="package://toe-roll.obj"/>
       </geometry>
     </collision>
   </link>
@@ -551,13 +551,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-yaw-housing.obj" scale="1 -1 1"/>
+        <mesh filename="package://hip-yaw-housing.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-yaw-housing.obj" scale="1 -1 1"/>
+        <mesh filename="package://hip-yaw-housing.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -570,13 +570,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch-housing.obj" scale="1 -1 1"/>
+        <mesh filename="package://hip-pitch-housing.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch-housing.obj" scale="1 -1 1"/>
+        <mesh filename="package://hip-pitch-housing.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -589,13 +589,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch.obj" scale="1 -1 1"/>
+        <mesh filename="package://hip-pitch.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="hip-pitch.obj" scale="1 -1 1"/>
+        <mesh filename="package://hip-pitch.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -608,13 +608,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="knee.obj" scale="1 -1 1"/>
+        <mesh filename="package://knee.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="knee.obj" scale="1 -1 1"/>
+        <mesh filename="package://knee.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -627,13 +627,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="shin.obj" scale="1 -1 1"/>
+        <mesh filename="package://shin.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="shin.obj" scale="1 -1 1"/>
+        <mesh filename="package://shin.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -646,13 +646,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="tarsus.obj" scale="1 -1 1"/>
+        <mesh filename="package://tarsus.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="tarsus.obj" scale="1 -1 1"/>
+        <mesh filename="package://tarsus.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -665,13 +665,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-pitch.obj" scale="1 -1 1"/>
+        <mesh filename="package://toe-pitch.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-pitch.obj" scale="1 -1 1"/>
+        <mesh filename="package://toe-pitch.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -684,13 +684,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-roll.obj" scale="1 -1 1"/>
+        <mesh filename="package://toe-roll.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="toe-roll.obj" scale="1 -1 1"/>
+        <mesh filename="package://toe-roll.obj" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
