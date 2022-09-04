@@ -5,6 +5,8 @@ version = "0.1.0"
 
 [deps]
 PyBullet = "9e6df25e-3b2c-44c5-be37-b553c26be21f"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
 julia = "1"
