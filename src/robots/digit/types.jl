@@ -40,10 +40,14 @@ mutable struct DigitSim
     leg_indices 
     init_config
     com_goal
+    θ_min
+    θ_max
 
     function DigitSim(vis::Visualizer)
         Δt = 10E-3 
         leg_indices = [7, 9, 10, 19,21,22]
+        θ_min = [-1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.0472, -0.698, -1.0472, -1.2392, -0.35, -0.8779, -0.785, -0.6109, -1.309, -2.5307, -1.7453, -1.3526, -1.0472, -0.698, -1.57, -0.8727, -0.35, -1.2497, -0.785, -0.6109, -1.309, -2.5307, -1.7453, -1.3526]
+        θ_max = [1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308,  1.0472, 0.698, 1.57, 0.8727, 0.35, 1.2497, 0.785, 0.6109, 1.309, 2.5307, 1.7453, 1.3526, 1.0472, 0.698, 1.0472, 1.2392, 0.35, 0.8779, 0.785, 0.6109, 1.309, 2.5307, 1.7453, 1.3526]
         new(vis, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, 
         nothing, nothing, nothing, nothing, [], Δt, nothing, nothing, nothing, leg_indices, nothing, nothing)
     end

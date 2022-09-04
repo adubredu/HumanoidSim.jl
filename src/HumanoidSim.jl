@@ -11,11 +11,20 @@ using RigidBodyDynamics
 using CoordinateTransformations
 using Rotations
 using Colors
+using Reexport
 
 include("visuals.jl")
+
+# digit
+include("robots/digit/constants.jl")
 include("robots/digit/types.jl")
+include("robots/digit/utils.jl")
 include("robots/digit/get.jl")
 include("robots/digit/load.jl")
+include("robots/digit/kinematics/kinematics.jl")
+include("robots/digit/dynamics/dynamics.jl")
+# include("robots/digit/ik.jl")
+# include("robots/digit/controllers.jl")
 
 export  Digit,
         DigitSim
@@ -23,6 +32,18 @@ export  Digit,
 export get_generalized_coordinates,
        load_digit
 
+export make_posture_controller
+
 export initialize_arena!
+
+# kinematics submodule
+@reexport using .kinematics
+const kin = kinematics
+export kin
+
+# dynamics submodule
+@reexport using .dynamics
+const dyn = dynamics
+export dyn
 
 end

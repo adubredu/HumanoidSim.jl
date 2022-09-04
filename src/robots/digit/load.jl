@@ -96,8 +96,6 @@ function load_digit(sim::DigitSim)
         add_contact_point!(right_foot_link, RigidBodyDynamics.Contact.ContactPoint(point, contact_model))
     end
 
-
-
     state = MechanismState(mech)
     set_nominal_state!(state)
 
@@ -128,7 +126,7 @@ function load_digit(sim::DigitSim)
     sim.right_foot_contact_points = right_foot_contact_points
     sim.joints = [j for j in joints(state.mechanism) if typeof(j.joint_type) == Revolute{Float64}]
  
-    # sim.init_config = euler_configuration(state)
+    sim.init_config = euler_configuration(state)
     
     sim.θᵣ = configuration(state)[8:end]
     sim.mvis = mvis 
