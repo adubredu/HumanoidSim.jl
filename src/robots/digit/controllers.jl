@@ -1,11 +1,11 @@
 function make_posture_controller(sim; Kp=1000.0, Kd=5.0)
     qref = sim.init_config[7:end]
     
-    function posture_controller(τ, t, state)
+    function posture_controller(torque, t, state)
         qpos = euler_configuration(state)[7:end]
         qvel = velocity(state)[7:end] 
-        τ[7:end] = -Kp*(qpos-qref) - Kd*qvel
-        τ
+        torque[7:end] = -Kp*(qpos-qref) - Kd*qvel
+        torque
     end
 end
 
@@ -40,12 +40,12 @@ function make_balance_controller(sim, com_goal)
         q_motors = copy(θ)
         q_motors_des = copy(θ) 
 
-        q_motors_des[qleftHipRoll] = θd[qleftHipRoll]
-        q_motors_des[qleftHipPitch] = θd[qleftHipPitch]
-        q_motors_des[qleftKnee] = θd[qleftKnee]
-        q_motors_des[qrightHipRoll] = θd[qrightHipRoll]
-        q_motors_des[qrightHipPitch] = θd[qrightHipPitch]
-        q_motors_des[qrightKnee] = θd[qrightKnee]
+        # q_motors_des[qleftHipRoll] = θd[qleftHipRoll]
+        # q_motors_des[qleftHipPitch] = θd[qleftHipPitch]
+        # q_motors_des[qleftKnee] = θd[qleftKnee]
+        # q_motors_des[qrightHipRoll] = θd[qrightHipRoll]
+        # q_motors_des[qrightHipPitch] = θd[qrightHipPitch]
+        # q_motors_des[qrightKnee] = θd[qrightKnee]
 
         q_motors_des[qleftHipYaw] = 0.0
         q_motors_des[qrightHipYaw] = 0.0
@@ -59,14 +59,32 @@ function make_balance_controller(sim, com_goal)
         q_motors_des[qrightShoulderYaw] = 0
         q_motors_des[qrightElbow] = 0.145
 
-        com_midpoint_error = p_com_aligned - 0.5 * 
-                    (p_left_toe_aligned + p_right_toe_aligned)
-        toe_pitch_error = com_midpoint_error[1] 
+        q_motors_des[qleftHipRoll] = 0.337
+        q_motors_des[qleftHipPitch] = 0.0 
+        q_motors_des[qleftKnee] = 0.0
+        q_motors_des[qrightHipRoll] = -0.337
+        q_motors_des[qrightHipPitch] = 0.0
+        q_motors_des[qrightKnee] = 0.0
 
-        q_motors_des[qleftToePitch] =   q_motors[qleftToePitch]  + toe_pitch_error
-        q_motors_des[qleftToeRoll] = q_motors[qleftToeRoll] - toe_pitch_error
-        q_motors_des[qrightToePitch] =  q_motors[qrightToePitch] - toe_pitch_error
-        q_motors_des[qrightToeRoll] =  q_motors[qrightToeRoll]+ toe_pitch_error 
+        q_motors_des[qleftToePitch] = -0.126
+        q_motors_des[qleftToeRoll] = 0.0
+        q_motors_des[qrightToePitch] = 0.126
+        q_motors_des[qrightToeRoll] = 0.0
+
+        q_motors_des[qleftKneeToShin] = 0.0
+        q_motors_des[qleftShinToTarsus] = 0.0
+        q_motors_des[qrightKneeToShin] = 0.0
+        q_motors_des[qrightShinToTarsus] = 0.0
+
+
+        # com_midpoint_error = p_com_aligned - 0.5 * 
+        #             (p_left_toe_aligned + p_right_toe_aligned)
+        # toe_pitch_error = com_midpoint_error[1] 
+
+        # q_motors_des[qleftToePitch] =   q_motors[qleftToePitch]  + toe_pitch_error
+        # q_motors_des[qleftToeRoll] = q_motors[qleftToeRoll] - toe_pitch_error
+        # q_motors_des[qrightToePitch] =  q_motors[qrightToePitch] - toe_pitch_error
+        # q_motors_des[qrightToeRoll] =  q_motors[qrightToeRoll]+ toe_pitch_error 
 
         q_motors_error = q_motors - q_motors_des  
 
@@ -83,34 +101,37 @@ function make_balance_controller(sim, com_goal)
         kp_shoulderyaw_stand = 100.0
         kp_elbow_stand = 100.0 
 
-        τ[qleftHipRoll] = -kp_hiproll_stand * q_motors_error[qleftHipRoll]
-        τ[qleftHipYaw] = -kp_hipyaw_stand * q_motors_error[qleftHipYaw]
-        τ[qleftHipPitch] = -kp_hippitch_stand * q_motors_error[qleftHipPitch]
-        τ[qleftKnee] = -kp_knee_stand * q_motors_error[qleftKnee]
-        τ[qrightHipRoll] = -kp_hiproll_stand * q_motors_error[qrightHipRoll]
-        τ[qrightHipYaw] = -kp_hipyaw_stand * q_motors_error[qrightHipYaw]
-        τ[qrightHipPitch] = -kp_hippitch_stand * q_motors_error[qrightHipPitch]
-        τ[qrightKnee] = -kp_knee_stand * q_motors_error[qrightKnee]
+        torque = copy(τ)
+        torque[qleftHipRoll] = -kp_hiproll_stand * q_motors_error[qleftHipRoll]
+        torque[qleftHipYaw] = -kp_hipyaw_stand * q_motors_error[qleftHipYaw]
+        torque[qleftHipPitch] = -kp_hippitch_stand * q_motors_error[qleftHipPitch]
+        torque[qleftKnee] = -kp_knee_stand * q_motors_error[qleftKnee]
+        torque[qrightHipRoll] = -kp_hiproll_stand * q_motors_error[qrightHipRoll]
+        torque[qrightHipYaw] = -kp_hipyaw_stand * q_motors_error[qrightHipYaw]
+        torque[qrightHipPitch] = -kp_hippitch_stand * q_motors_error[qrightHipPitch]
+        torque[qrightKnee] = -kp_knee_stand * q_motors_error[qrightKnee]
 
-        τ[qleftShoulderRoll] = -kp_shoulderroll_stand * q_motors_error[qleftShoulderRoll]
-        τ[qleftShoulderPitch] = -kp_shoulderpitch_stand * q_motors_error[qleftShoulderPitch]
-        τ[qleftShoulderYaw] = -kp_shoulderyaw_stand * q_motors_error[qleftShoulderYaw]
-        τ[qleftElbow] = -kp_elbow_stand * q_motors_error[qleftElbow]
-        τ[qrightShoulderRoll] = -kp_shoulderroll_stand * q_motors_error[qrightShoulderRoll]
-        τ[qrightShoulderPitch] = -kp_shoulderpitch_stand * q_motors_error[qrightShoulderPitch]
-        τ[qrightShoulderYaw] = -kp_shoulderyaw_stand * q_motors_error[qrightShoulderYaw]
-        τ[qrightElbow] = -kp_elbow_stand * q_motors_error[qrightElbow]
+        torque[qleftShoulderRoll] = -kp_shoulderroll_stand * q_motors_error[qleftShoulderRoll]
+        torque[qleftShoulderPitch] = -kp_shoulderpitch_stand * q_motors_error[qleftShoulderPitch]
+        torque[qleftShoulderYaw] = -kp_shoulderyaw_stand * q_motors_error[qleftShoulderYaw]
+        torque[qleftElbow] = -kp_elbow_stand * q_motors_error[qleftElbow]
+        torque[qrightShoulderRoll] = -kp_shoulderroll_stand * q_motors_error[qrightShoulderRoll]
+        torque[qrightShoulderPitch] = -kp_shoulderpitch_stand * q_motors_error[qrightShoulderPitch]
+        torque[qrightShoulderYaw] = -kp_shoulderyaw_stand * q_motors_error[qrightShoulderYaw]
+        torque[qrightElbow] = -kp_elbow_stand * q_motors_error[qrightElbow]
 
         kd_toe_stand = 50;
-        τ[qleftToePitch] = -kp_toe_stand * q_motors_error[qleftToePitch] + kd_toe_stand * v_com_aligned[1]
-        τ[qleftToeRoll] = -kp_toe_stand * q_motors_error[qleftToeRoll] - kd_toe_stand * v_com_aligned[1]
-        τ[qrightToePitch] = -kp_toe_stand * q_motors_error[qrightToePitch] - kd_toe_stand * v_com_aligned[1]
-        τ[qrightToeRoll] = -kp_toe_stand * q_motors_error[qrightToeRoll] + kd_toe_stand * v_com_aligned[1]
+        torque[qleftToePitch] = -kp_toe_stand * q_motors_error[qleftToePitch] #+ kd_toe_stand * v_com_aligned[1]
+        torque[qleftToeRoll] = -kp_toe_stand * q_motors_error[qleftToeRoll]# - kd_toe_stand * v_com_aligned[1]
+        torque[qrightToePitch] = -kp_toe_stand * q_motors_error[qrightToePitch]# - kd_toe_stand * v_com_aligned[1]
+        torque[qrightToeRoll] = -kp_toe_stand * q_motors_error[qrightToeRoll] #+ kd_toe_stand * v_com_aligned[1]
 
         # knee_comp
-        knee_comp = -kp_knee_comp_stand * -com_midpoint_error[2] - kd_knee_comp_stand * -v_com_aligned[2] 
-        τ[qleftKnee] += knee_comp
-        τ[qrightKnee] += knee_comp
-        τ
+        # knee_comp = -kp_knee_comp_stand * -com_midpoint_error[2] - kd_knee_comp_stand * -v_com_aligned[2] 
+        # torque[qleftKnee] += knee_comp
+        # torque[qrightKnee] += knee_comp
+        set_configuration!(sim.mvis, configuration(state))
+        τ[7:end] = rearrange_torque(torque)[7:end]
+        τ   
     end
 end

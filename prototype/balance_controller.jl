@@ -13,5 +13,5 @@ open(sim.mvis.visualizer)
 
 com_goal = [0.0, 0.0, 0.96]
 balance_controller = make_balance_controller(sim, com_goal)
-ts, qs, vs = simulate(sim.state, 5.0, balance_controller)
+ts, qs, vs = simulate(sim.state, 1.0, balance_controller)
 setanimation!(sim.mvis, Animation(sim.mvis, ts, qs))
