@@ -1,3 +1,13 @@
+function wrap_to_pi!(angle::Float64)
+    if angle > 0.0
+        num_rotations = Int(ceil((angle + π)/2π))
+        angle = angle - 2π*num_rotations
+    else
+        num_rotations = Int(ceil((angle - π)/2π))
+        angle = angle - 2π*num_rotations
+    end 
+end
+
 function quat_to_rpy(q::Vector{Float64})
     quat = QuatRotation(q)
     zyx = RotZYX(quat)

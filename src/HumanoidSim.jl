@@ -23,8 +23,8 @@ include("robots/digit/get.jl")
 include("robots/digit/load.jl")
 include("robots/digit/kinematics/kinematics.jl")
 include("robots/digit/dynamics/dynamics.jl")
-# include("robots/digit/ik.jl")
-# include("robots/digit/controllers.jl")
+include("robots/digit/ik.jl")
+include("robots/digit/controllers.jl")
 
 export  Digit,
         DigitSim
@@ -32,7 +32,8 @@ export  Digit,
 export get_generalized_coordinates,
        load_digit
 
-export make_posture_controller
+export  make_posture_controller,
+        make_balance_controller
 
 export initialize_arena!
 
