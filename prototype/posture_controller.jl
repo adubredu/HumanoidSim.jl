@@ -12,5 +12,5 @@ load_digit(sim)
 open(sim.mvis.visualizer)
 
 posture_controller = make_posture_controller(sim)
-ts, qs, vs = simulate(sim.state, 20.0, posture_controller)
+ts, qs, vs = simulate(sim.state, 1.0, posture_controller)
 setanimation!(sim.mvis, Animation(sim.mvis, ts, qs))
