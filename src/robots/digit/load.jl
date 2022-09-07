@@ -1,12 +1,12 @@
 packagepath() = joinpath(@__DIR__, "models")
 urdfpath() = joinpath(packagepath(), "digit_w_grippers.urdf")
 
-function load_digit_pb(p, init_pose=[0.0, 0.0, 0.9])
+function load_digit(p, sim, init_pose=[0.0, 0.0, 0.9])
     path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
     @show path
     p.setAdditionalSearchPath(path)
     id = p.loadURDF("digit_w_grippers.urdf", init_pose, useFixedBase=false)
-    digit = Digit(pyconvert(Int64, id), p)
+    digit = Digit(pyconvert(Int64, id), p, sim)
     return digit
 end
 
@@ -54,11 +54,11 @@ function set_nominal_state!(state::MechanismState)
         set_configuration!(state, findjoint(mechanism, k), default_pose[k])
     end
     floating_base = first(out_joints(root_body(mechanism), mechanism))
-    set_configuration!(state, floating_base, [1.0; 0.0; 0.0; 0.0; 0.0; 0.0; 0.92])
+    set_configuration!(state, floating_base, [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.92])
     return state
 end
 
-function load_digit(sim::DigitSim)
+function load_digit_vis(sim::DigitSim)
     mech  = mechanism(add_flat_ground=true) 
 
     left_hand_link = findbody(mech, "left_elbow")

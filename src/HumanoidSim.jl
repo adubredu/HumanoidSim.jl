@@ -25,12 +25,17 @@ include("robots/digit/kinematics/kinematics.jl")
 include("robots/digit/dynamics/dynamics.jl")
 include("robots/digit/ik.jl")
 include("robots/digit/controllers.jl")
+include("robots/digit/set.jl")
+include("robots/digit/simulate.jl")
 
 export  Digit,
         DigitSim
 
 export get_generalized_coordinates,
-       load_digit
+       load_digit_vis,
+       load_digit,
+       update_state!,
+       simulate
 
 export  make_posture_controller,
         make_balance_controller

@@ -8,7 +8,7 @@ if !(@isdefined vis)
 end
 initialize_arena!(vis)
 sim = DigitSim(vis)
-load_digit(sim)
+load_digit_vis(sim)
 open(sim.mvis.visualizer)
 
 posture_controller = make_posture_controller(sim)
