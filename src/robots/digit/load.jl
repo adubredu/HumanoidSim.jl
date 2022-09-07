@@ -1,9 +1,8 @@
 packagepath() = joinpath(@__DIR__, "models")
 urdfpath() = joinpath(packagepath(), "digit_w_grippers.urdf")
 
-function load_digit(p, sim, init_pose=[0.0, 0.0, 0.9])
-    path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
-    @show path
+function load_digit(p, sim, init_pose=[0.0, 0.0, 1.9])
+    path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models") 
     p.setAdditionalSearchPath(path)
     id = p.loadURDF("digit_w_grippers.urdf", init_pose, useFixedBase=false)
     digit = Digit(pyconvert(Int64, id), p, sim)
@@ -106,16 +105,16 @@ function load_digit_vis(sim::DigitSim)
     # com_point = Point3D(root_frame(state.mechanism), com)
 
     # setelement!(mvis, com_point, 0.13, "COM")
-    setelement!(mvis, left_hand_ee, 0.05, "left_hand")
-    setelement!(mvis, right_hand_ee, 0.05, "right_hand") 
+    # setelement!(mvis, left_hand_ee, 0.05, "left_hand")
+    # setelement!(mvis, right_hand_ee, 0.05, "right_hand") 
     # setelement!(mvis, pelvis, 0.1, "pelvis") 
 
-    for (i,point) in enumerate(left_foot_contact_points)
-        setelement!(mvis, point, 0.01, "left_foot_contact_"*string(i))
-    end
-    for (i,point) in enumerate(right_foot_contact_points)
-        setelement!(mvis, point, 0.01, "right_foot_contact_"*string(i))
-    end     
+    # for (i,point) in enumerate(left_foot_contact_points)
+    #     setelement!(mvis, point, 0.01, "left_foot_contact_"*string(i))
+    # end
+    # for (i,point) in enumerate(right_foot_contact_points)
+    #     setelement!(mvis, point, 0.01, "right_foot_contact_"*string(i))
+    # end     
     
     sim.left_hand_ee = left_hand_ee
     sim.right_hand_ee = right_hand_ee

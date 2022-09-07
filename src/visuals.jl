@@ -20,7 +20,7 @@ Borrowed from Dojo.jl (https://github.com/dojo-sim/Dojo.jl/blob/main/src/visuals
 function set_floor!(vis::Visualizer;
 	    x=20.0,
 	    y=20.0,
-	    z=0.1,
+	    z=-0.25,
 	    origin=[0,0,0.0],
 		normal=[0,0,1.0],
 	    color=nothing, #RGBA(0.5,0.5,0.5,1.0),

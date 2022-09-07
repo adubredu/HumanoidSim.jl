@@ -19,7 +19,7 @@ planeID = p.loadURDF("plane.urdf")
 digit = load_digit(p, sim)
 
 open(digit.sim.mvis.visualizer) 
-Ts, qs, q̇s = simulate(digit, 10.0; Δt=1e-3) 
+Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3) 
 
 p.disconnect()
 
