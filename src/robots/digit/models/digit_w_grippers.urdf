@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="digit">
+<material name="feet_material">
+  <color rgba="0 0 0 0"/>
+</material>
   <link name="torso">
     <inertial>
       <origin rpy="0 0 0" xyz="0.001637 0.0002 0.259547"/>
@@ -809,4 +812,54 @@
     <limit effort="0.9" lower="-0.6109" upper="0.6109" velocity="11.5"/>
   </joint>
   
+  <link name="leftpin">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <mass value="0.5"/>
+        <inertia ixx="4.166666666666667e-6" ixy="0.0" ixz="0.0" iyy="4.166666666666667e-6" iyz="0.0" izz="6.250000000000001e-6"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0.0 0 0"/>
+        <geometry> 
+            <box size="0.3 0.1 0.015"/> 
+        </geometry>
+        <material name="feet_material"/>
+        </visual>
+        <collision>
+        <origin rpy="0 0 0" xyz="0.0 0 0"/>
+        <geometry>
+            <box size="0.3 0.1 0.015"/> 
+        </geometry>
+        </collision>
+    </link>
+    <link name="rightpin">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <mass value="0.5"/>
+        <inertia ixx="4.166666666666667e-6" ixy="0.0" ixz="0.0" iyy="4.166666666666667e-6" iyz="0.0" izz="6.250000000000001e-6"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0.0 0 0"/>
+        <geometry> 
+            <box size="0.3 0.1 0.015"/> 
+        </geometry>
+        <material name="feet_material"/>
+        </visual>
+        <collision>
+        <origin rpy="0 0 0" xyz="0.0 0 0"/>
+        <geometry>
+            <box size="0.3 0.1 0.015"/> 
+        </geometry>
+        </collision>
+    </link>
+    <joint name="leftpinjoint" type="fixed">
+      <origin rpy="0 -1.05 -1.57" xyz="0.0 -0.065 -0.025"/> 
+      <parent link="left_toe_roll"/>
+      <child link="leftpin"/> 
+    </joint>
+    <joint name="rightpinjoint" type="fixed">
+      <origin rpy="0 -1.05 1.57" xyz="0.0 0.065 -0.025"/> 
+      <parent link="right_toe_roll"/>
+      <child link="rightpin"/> 
+    </joint> 
 </robot>

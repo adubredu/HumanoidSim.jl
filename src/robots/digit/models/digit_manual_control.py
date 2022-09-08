@@ -7,7 +7,7 @@ p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 p.loadURDF("plane.urdf")
 p.setAdditionalSearchPath('..')
-humanoid = p.loadURDF("digit_w_grippers.urdf", [0.0, 0.0, 2.0], useFixedBase=False) 
+humanoid = p.loadURDF("digit_w_grippers.urdf", [0.0, 0.0, 2.0], useFixedBase=True) 
 
 gravId = p.addUserDebugParameter("gravity", -10, 10, -10)
 jointIds = []
