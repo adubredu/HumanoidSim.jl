@@ -1,7 +1,7 @@
-function make_posture_controller(sim; Kp=1000.0, Kd=5.0)
+function make_posture_controller_rbd(sim; Kp=1000.0, Kd=5.0)
     qref = sim.init_config[7:end]
     
-    function posture_controller(torque, t, state)
+    function posture_controller_rbd(torque, t, state)
         qpos = euler_configuration(state)[7:end]
         qvel = velocity(state)[7:end] 
         torque[7:end] = -Kp*(qpos-qref) #- Kd*qvel
@@ -10,7 +10,7 @@ function make_posture_controller(sim; Kp=1000.0, Kd=5.0)
     end
 end
 
-function make_balance_controller(sim, com_goal)
+function make_balance_controller_rbd(sim, com_goal)
     step_width = 0.27 
     function balance_controller(τ, t, state) 
         θ = get_qall_from_state(state)
@@ -146,4 +146,9 @@ function make_balance_controller(sim, com_goal)
         # @show τ  
         τ   
     end
+end
+
+function posture_position_controller(q, q̇, digit)
+    pos = digit.sim.θᵣ
+    return pos
 end

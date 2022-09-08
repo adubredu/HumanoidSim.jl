@@ -13,3 +13,21 @@ function update_state!(q::Vector{Float64},  q̇::Vector{Float64}, digit::Digit)
     q̇state = velocity(state)
     return qstate, q̇state
 end
+
+function apply_velocity!(v::Vector{Float64}, digit::Digit)
+    p = digit.p
+    robot = digit.id
+    joint_indices = digit.ids
+    max_forces = 1000*ones(length(v))
+    p.setJointMotorControlArray(robot, joint_indices, p.VELOCITY_CONTROL, 
+        targetVelocities=v, forces=max_forces)
+end
+
+function apply_position!(pos::Vector{Float64}, v::Vector{Float64}, digit::Digit)
+    p = digit.p
+    robot = digit.id
+    joint_indices = digit.joint_ids
+    max_forces = 1000*ones(length(v))
+    p.setJointMotorControlArray(robot, joint_indices, p.POSITION_CONTROL, 
+        targetPositions=pos, targetVelocities=v, forces=max_forces)
+end

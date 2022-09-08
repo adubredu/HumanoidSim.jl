@@ -1,7 +1,7 @@
 packagepath() = joinpath(@__DIR__, "models")
 urdfpath() = joinpath(packagepath(), "digit_w_grippers.urdf")
 
-function load_digit(p, sim, init_pose=[0.0, 0.0, 1.9])
+function load_digit(p, sim, init_pose=[0.0, 0.0, 0.98])
     path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models") 
     p.setAdditionalSearchPath(path)
     id = p.loadURDF("digit_w_grippers.urdf", init_pose, useFixedBase=false)
@@ -96,7 +96,7 @@ function load_digit_vis(sim::DigitSim)
     end
 
     state = MechanismState(mech)
-    set_nominal_state!(state)
+    # set_nominal_state!(state)
 
     mvis = MechanismVisualizer(state.mechanism, URDFVisuals(urdfpath(); package_path=[packagepath()]), sim.vis) 
     set_configuration!(mvis, configuration(state))
@@ -127,7 +127,8 @@ function load_digit_vis(sim::DigitSim)
  
     sim.init_config = euler_configuration(state)
     
-    sim.θᵣ = configuration(state)[8:end]
+    sim.θᵣ = [0.337, 0, 0, 0, 0, 0, -0.126, 0, 0, 0.589, 0, 0, -0.337, 0, 0,
+              0, 0, 0, 0.126, 0, 0, -0.589, 0, 0]
     sim.mvis = mvis 
     sim.state = state
     # sim.statecache = StateCache(sim.state.mechanism)
