@@ -27,7 +27,7 @@ function apply_position!(pos::Vector{Float64}, v::Vector{Float64}, digit::Digit)
     p = digit.p
     robot = digit.id
     joint_indices = digit.joint_ids
-    max_forces = 1000*ones(length(v))
+    max_forces = 500*ones(length(v))
     p.setJointMotorControlArray(robot, joint_indices, p.POSITION_CONTROL, 
         targetPositions=pos, targetVelocities=v, forces=max_forces)
 end

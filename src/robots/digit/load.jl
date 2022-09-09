@@ -1,7 +1,7 @@
 packagepath() = joinpath(@__DIR__, "models")
 urdfpath() = joinpath(packagepath(), "digit_w_grippers.urdf")
 
-function load_digit(p, sim, init_pose=[0.0, 0.0, 0.98])
+function load_digit(p, sim, init_pose=[0.0, 0.0, 0.92])
     path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models") 
     p.setAdditionalSearchPath(path)
     id = p.loadURDF("digit_w_grippers.urdf", init_pose, useFixedBase=false)

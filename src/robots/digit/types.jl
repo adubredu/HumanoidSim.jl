@@ -48,7 +48,7 @@ struct Digit
             "right-hip-pitch", "right-knee", "right-shin", "right-tarsus", 
             "right-toe-pitch", "right-toe-roll", "right-shoulder-roll", 
             "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]
-        joint_ids = [14, 15, 16, 17, 18, 19, 20, 21, 0, 1, 2, 3, 22, 23, 24, 25, 26, 27, 28, 29, 6, 7, 8, 9]
+        joint_ids = [14, 15, 16, 17, 18, 19, 20, 21, 0, 1, 2, 3, 23, 24, 25, 26, 27, 28, 29, 30, 6, 7, 8, 9]
         new(id, p, joint_names, joint_ids, sim)
     end
 end
