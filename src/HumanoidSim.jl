@@ -42,7 +42,8 @@ export get_generalized_coordinates,
 
 export  make_posture_controller,
         make_balance_controller,
-        posture_position_controller
+        posture_position_controller,
+        balance_position_controller
 
 export initialize_arena!
 

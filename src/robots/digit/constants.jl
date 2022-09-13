@@ -28,3 +28,10 @@ qrightShoulderRoll = 27
 qrightShoulderPitch = 28
 qrightShoulderYaw = 29
 qrightElbow = 30
+
+qall_joints = ["left-hip-roll", "left-hip-yaw", "left-hip-pitch", "left-knee",
+"left-shin", "left-tarsus", "left-toe-pitch", "left-toe-roll", "left-shoulder-roll",
+ "left-shoulder-pitch", "left-shoulder-yaw", "left-elbow", "right-hip-roll", 
+ "right-hip-yaw", "right-hip-pitch", "right-knee", "right-shin", "right-tarsus",
+  "right-toe-pitch", "right-toe-roll", "right-shoulder-roll",
+  "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]

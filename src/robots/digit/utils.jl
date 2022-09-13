@@ -8,16 +8,16 @@ function wrap_to_pi!(angle::Float64)
     end 
 end
 
-function quat_to_rpy(q::Vector{Float64})
+function quat_to_ypr(q::Vector{Float64})
     quat = QuatRotation(q)
     zyx = RotZYX(quat)
     ypr = [zyx.theta1, zyx.theta2, zyx.theta3]
     return ypr
 end 
 
-function rpy_to_quat(q::Vector{Float64})
-    rpy = RotXYZ(q...)
-    qr = QuatRotation(rpy)
+function ypr_to_quat(q::Vector{Float64})
+    ypr = RotXYZ(q...)
+    qr = QuatRotation(ypr)
     quat = [qr.q.s, qr.q.v1, qr.q.v2, qr.q.v3]
     return quat
 end
@@ -61,6 +61,14 @@ function oldget_qall_from_state(state::MechanismState)
     qall[30] = q[23]
     return qall
 end
+
+# function get_qall_from_pb(q::Vector{Float64})
+#     euler = quat_to_ypr(q[1:4])
+#     pos = q[5:7]
+#     qall = [pos..., euler...]
+#     qall = []
+
+# end
 
 function get_qall_from_state(state::MechanismState)
     q = euler_configuration(state)

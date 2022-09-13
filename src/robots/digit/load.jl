@@ -125,7 +125,7 @@ function load_digit_vis(sim::DigitSim)
     sim.right_foot_contact_points = right_foot_contact_points
     sim.joints = [j for j in joints(state.mechanism) if typeof(j.joint_type) == Revolute{Float64}]
  
-    sim.init_config = euler_configuration(state)
+    # sim.init_config = euler_configuration(state)
     
     sim.θᵣ = [0.337, 0, 0, 0, 0, 0, -0.126, 0, 0, 0.589, 0, 0, -0.337, 0, 0,
               0, 0, 0, 0.126, 0, 0, -0.589, 0, 0]
