@@ -28,8 +28,18 @@ include("robots/digit/controllers.jl")
 include("robots/digit/set.jl")
 include("robots/digit/simulate.jl")
 
+# picklerick
+include("robots/picklerick/types.jl")
+include("robots/picklerick/get.jl")
+include("robots/picklerick/set.jl")
+include("robots/picklerick/load.jl")
+include("robots/picklerick/simulate.jl")
+
 export  Digit,
         DigitSim
+
+export Picklerick,
+       PicklerickSim
 
 export get_generalized_coordinates,
        load_digit_vis,
@@ -39,6 +49,8 @@ export get_generalized_coordinates,
        apply_velocity!,
        apply_position!
 
+export load_picklerick_vis,
+        load_picklerick        
 
 export  make_posture_controller,
         make_balance_controller,

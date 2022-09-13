@@ -26,7 +26,7 @@ struct Picklerick
             "right_elbow_yaw", "left_shoulder_pitch", "left_shoulder_yaw", 
             "left_elbow_yaw", "right_hip_pitch", "right_thigh_yaw", 
             "right_shin_yaw", "left_hip_pitch", "left_thigh_yaw", "left_shin_yaw"]
-        joint_ids = []
+        joint_ids = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12]
         new(id, p, joint_names, joint_ids, sim)
     end
 end
