@@ -67,7 +67,7 @@ function load_digit_vis(sim::DigitSim)
     
     sim.θᵣ = [0.337, 0, 0, 0, 0, 0, -0.126, 0, 0, 0.589, 0, 0, -0.337, 0, 0,
               0, 0, 0, 0.126, 0, 0, -0.589, 0, 0]
-    sim.θᵣ[3] = 0.1
+    sim.θᵣ[3] = -0.1
     sim.θᵣ[15] = -sim.θᵣ[3]
     sim.mvis = mvis 
     sim.state = state 
