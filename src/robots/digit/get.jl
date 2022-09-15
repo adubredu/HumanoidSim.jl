@@ -13,7 +13,7 @@ function get_generalized_coordinates(digit::Digit)
     q̇ = [base_linear_velocity..., base_angular_velocity..., q̇...]
     q = [pyconvert(Float64, a) for a in q]
     q̇ = [pyconvert(Float64, b) for b in q̇]  
-    q[7]-=0.275
+    # q[7]-=0.275
 
     return q, q̇
 end
