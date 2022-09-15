@@ -5,7 +5,7 @@ function get_generalized_coordinates(digit::Digit)
     # base_orientation = p.getEulerFromQuaternion(base_orientation_quat)
     base_linear_velocity, base_angular_velocity = p.getBaseVelocity(digit.id)
     #  joint_ids = [pyplan.get_joint(digit.id, name) for name in digit.joint_names]
-    joint_states = p.getJointStates(digit.id, digit.joint_ids)
+    joint_states = p.getJointStates(digit.id, digit.joint_ids) 
 
     q = [js[0] for js in joint_states]
     q = [base_orientation_quat..., base_position..., q...]
@@ -13,6 +13,7 @@ function get_generalized_coordinates(digit::Digit)
     q̇ = [base_linear_velocity..., base_angular_velocity..., q̇...]
     q = [pyconvert(Float64, a) for a in q]
     q̇ = [pyconvert(Float64, b) for b in q̇]  
+    q[7]-=0.275
 
     return q, q̇
 end

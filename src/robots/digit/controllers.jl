@@ -159,10 +159,10 @@ function balance_position_controller(q::Vector{Float64}, q̇::Vector{Float64},
     step_width = 0.27  
     ypr = quat_to_ypr(q[1:4])
     heading = ypr[1]  
-    @show heading
+    # @show heading
     wrap_to_pi!(heading)
     Rz = RotZ(heading) 
-    @show q[5:7]
+    # @show q[5:7]
     θ = [q[5:7]..., ypr..., q[8:end]...] 
     θ̇  = [q̇[4:6]..., q̇[1:3]..., q̇[7:end]...]
 

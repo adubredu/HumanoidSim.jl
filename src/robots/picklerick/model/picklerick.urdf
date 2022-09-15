@@ -332,7 +332,7 @@
         </collision>
     </link>
 
-    <joint name="right_shoulder_pitch" type="continuous">
+    <joint name="right_shoulder_pitch" type="revolute">
         <origin rpy="1.57079632679 0  0" xyz="0 0.25 0.4"/>
         <axis xyz="0 0 1"/>
         <parent link="torso"/>
@@ -340,7 +340,7 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="left_shoulder_pitch" type="continuous">
+    <joint name="left_shoulder_pitch" type="revolute">
         <origin rpy="1.57079632679 0  0" xyz="0 -0.25 0.4"/>
         <axis xyz="0 0 1"/>
         <parent link="torso"/>
@@ -348,7 +348,7 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="right_hip_pitch" type="continuous">
+    <joint name="right_hip_pitch" type="revolute">
         <origin rpy="1.57079632679 0  0" xyz="0 0.25 -0.4"/>
         <axis xyz="0 0 1"/>
         <parent link="torso"/>
@@ -356,7 +356,7 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="left_hip_pitch" type="continuous">
+    <joint name="left_hip_pitch" type="revolute">
         <origin rpy="1.57079632679 0  0" xyz="0 -0.25 -0.4"/>
         <axis xyz="0 0 1"/>
         <parent link="torso"/>
@@ -364,14 +364,14 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="right_shoulder_yaw" type="continuous">
+    <joint name="right_shoulder_yaw" type="revolute">
         <origin rpy="0 0  0" xyz="0 0.0 0"/>
         <axis xyz="1 0 0"/>
         <parent link="right_shoulder_yaw_cap"/>
         <child link="right_shoulder"/>
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
-    <joint name="right_elbow_yaw" type="continuous">
+    <joint name="right_elbow_yaw" type="revolute">
         <origin rpy="-1.57 0  0" xyz="0 0.0 -0.5"/>
         <axis xyz="1 0 0"/>
         <parent link="right_shoulder"/>
@@ -379,14 +379,14 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="left_shoulder_yaw" type="continuous">
+    <joint name="left_shoulder_yaw" type="revolute">
         <origin rpy="0 0  0" xyz="0 0.0 0"/>
         <axis xyz="1 0 0"/>
         <parent link="left_shoulder_yaw_cap"/>
         <child link="left_shoulder"/>
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
-    <joint name="left_elbow_yaw" type="continuous">
+    <joint name="left_elbow_yaw" type="revolute">
         <origin rpy="1.57 0  0" xyz="0 0.0 0.5"/>
         <axis xyz="1 0 0"/>
         <parent link="left_shoulder"/>
@@ -394,14 +394,14 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="right_thigh_yaw" type="continuous">
+    <joint name="right_thigh_yaw" type="revolute">
         <origin rpy="-1.57 0  0" xyz="0 0.0 0"/>
         <axis xyz="1 0 0"/>
         <parent link="right_hip_yaw_cap"/>
         <child link="right_thigh"/>
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
-    <joint name="right_shin_yaw" type="continuous">
+    <joint name="right_shin_yaw" type="revolute">
         <origin rpy="0 0  0" xyz="0 0.0 -0.7"/>
         <axis xyz="1 0 0"/>
         <parent link="right_thigh"/>
@@ -409,14 +409,14 @@
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
 
-    <joint name="left_thigh_yaw" type="continuous">
+    <joint name="left_thigh_yaw" type="revolute">
         <origin rpy="1.57 0  0" xyz="0 0.0 0"/>
         <axis xyz="1 0 0"/>
         <parent link="left_hip_yaw_cap"/>
         <child link="left_thigh"/>
         <limit effort="1.4" lower="-2.5307" upper="2.5307" velocity="12.5"/>
     </joint>
-    <joint name="left_shin_yaw" type="continuous">
+    <joint name="left_shin_yaw" type="revolute">
         <origin rpy="0 0  0" xyz="0 0.0 0.7"/>
         <axis xyz="1 0 0"/>
         <parent link="left_thigh"/>
