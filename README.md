@@ -2,7 +2,7 @@
 
 <img src="media/humanoidsim.png" width="200" height="180" />
 
-A Julia package for physics simulation of the Digit humanoid robot, using Pybullet as the backend physics simulator and MeshCat as the renderer.
+A Julia package for physics simulation of the Digit humanoid robot, using [Pybullet.jl](https://github.com/adubredu/PyBullet.jl) as the backend physics simulator and [MeshCat.jl](https://github.com/rdeits/MeshCat.jl) as the renderer.
 
 ## Installation
 1. Open your Julia REPL by typing  `julia` in your terminal.
