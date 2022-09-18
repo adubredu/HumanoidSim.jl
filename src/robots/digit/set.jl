@@ -31,3 +31,10 @@ function apply_position!(pos::Vector{Float64}, v::Vector{Float64}, digit::Digit)
     p.setJointMotorControlArray(robot, joint_indices, p.POSITION_CONTROL, 
         targetPositions=pos, targetVelocities=v, forces=max_forces)
 end
+
+function apply_torque!(τ::Vector{Float64}, digit::Digit)
+    p = digit.p
+    for (i, name) in enumerate(digit.motor_names)
+        p.named.data.ctrl[name] = τ[i]
+    end
+end

@@ -44,12 +44,12 @@ export Picklerick,
 
 export get_generalized_coordinates,
        load_digit_vis,
-       load_digit,
-       load_mujoco_digit,
+       load_digit, 
        update_state!,
        simulate,
        apply_velocity!,
-       apply_position!
+       apply_position!,
+       apply_torque!
 
 export load_picklerick_vis,
         load_picklerick        

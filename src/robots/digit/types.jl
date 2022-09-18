@@ -28,7 +28,8 @@ end
 struct Digit
     id::Int64
     p
-    joint_names
+    joint_names::SVector{24, String}
+    motor_names::SVector{20, String}
     joint_ids
     sim::DigitSim
     engine::Symbol
@@ -41,8 +42,13 @@ struct Digit
             "right-hip-pitch", "right-knee", "right-shin", "right-tarsus", 
             "right-toe-pitch", "right-toe-roll", "right-shoulder-roll", 
             "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]
+        motor_names = SA["left-hip-roll", "left-hip-yaw", "left-hip-pitch", 
+        "left-knee", "left-toe-A", "left-toe-B",  "right-hip-roll", "right-hip-yaw", 
+        "right-hip-pitch", "right-knee", "right-toe-A", "right-toe-B", "left-shoulder-roll", "left-shoulder-pitch", 
+        "left-shoulder-yaw", "left-elbow", "right-shoulder-roll", 
+        "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]
         joint_ids = [14, 15, 16, 17, 18, 19, 20, 21, 0, 1, 2, 3, 23, 24, 25, 26, 27, 28, 29, 30, 6, 7, 8, 9]
-        new(id, p, joint_names, joint_ids, sim, engine)
+        new(id, p, joint_names, motor_names, joint_ids, sim, engine)
     end
 end
 

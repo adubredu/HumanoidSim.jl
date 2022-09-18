@@ -8,7 +8,7 @@ initialize_arena!(vis)
 sim = DigitSim(vis)
 load_digit_vis(sim)
 
-engine = :MuJoCo
+engine = :MuJoCo # engine = :PyBullet 
 digit = load_digit(sim; engine=engine)
 
 open(digit.sim.mvis.visualizer) 
