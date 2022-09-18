@@ -1,7 +1,7 @@
 # HumanoidSim.jl
 
 <!-- <img src="media/digitsim.gif" width="200" height="180" /> -->
-![](media/digitsim.gif)
+![](media/digitsim2.gif)
 
 A Julia package for physics simulation of the Digit humanoid robot. 
 
