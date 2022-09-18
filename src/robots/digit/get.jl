@@ -15,6 +15,9 @@ function get_generalized_coordinates(digit::Digit)
     elseif digit.engine == :MuJoCo
         p = digit.p
         base_orientation_quat = p.data.qpos[3:6]
+        tmp = base_orientation_quat[3]
+        base_orientation_quat[3] = base_orientation_quat[0]
+        base_orientation_quat[0] = tmp
         base_position = p.data.qpos[0:2]
         base_linear_velocity = p.data.qvel[0:2]
         base_angular_velocity = p.data.qvel[3:5]

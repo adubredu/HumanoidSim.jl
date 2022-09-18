@@ -58,7 +58,7 @@
   </default>
   <worldbody>
     <geom name='floor' type='plane' conaffinity='15' condim='3' material='plane' pos='0 0 0' size='5 5 0.125'/>
-    <body name='base' pos='0 0 0' euler='0 0 0'>
+    <body name='base' pos='0 0 0.92' euler='0 0 0'>
       <inertial pos='0.001637 0.0002 0.259547' mass='15.028392' fullinertia='0.376284 0.342655 0.100648 -8.8e-05 0.008378 6.7e-05'/>
       <joint type='free' limited='false'/>
       <geom type='mesh' mesh='base' material='robot'/>

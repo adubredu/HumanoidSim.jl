@@ -32,7 +32,6 @@ function simulate(digit::Digit, T::Float64;
                 end
                 apply_position!(cmd, 0.5*ones(length(cmd)), digit)
             elseif controller_mode == :velocity
-
                 if digit.engine == :MuJoCo
                     printstyled("No position control using MuJoCo Physics Engine\n", color=:red)
                     break

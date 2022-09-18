@@ -8,14 +8,13 @@ initialize_arena!(vis)
 sim = DigitSim(vis)
 load_digit_vis(sim)
 
-engine = :PyBullet
+engine = :MuJoCo
 digit = load_digit(sim; engine=engine)
 
 open(digit.sim.mvis.visualizer) 
-
-get_generalized_coordinates(digit)
+ 
 Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3) 
-
+ 
 if engine == :PyBullet digit.p.disconnect() end
 
 # # setting animation

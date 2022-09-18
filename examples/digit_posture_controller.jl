@@ -9,21 +9,14 @@ initialize_arena!(vis)
 sim = DigitSim(vis)
 load_digit_vis(sim)
 
-p = pybullet
-pyplan = pybullet_planning
-
-p.connect(p.DIRECT)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0, 0, -9.81)
-planeID = p.loadURDF("plane.urdf")
-digit = load_digit(p, sim)
-# joint_ids = [pyplan.get_joint(digit.id, name) for name in digit.joint_names]
-# @show joint_ids
+engine = :PyBullet
+digit = load_digit(sim; engine=engine)
+ 
 open(digit.sim.mvis.visualizer) 
 Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3, 
         controller=posture_position_controller, controller_mode=:position) 
 
-p.disconnect()
+if engine == :PyBullet digit.p.disconnect() end
 
 # setting animation
 println("***setting animation***") 
