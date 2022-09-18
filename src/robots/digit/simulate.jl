@@ -24,7 +24,7 @@ function simulate(digit::Digit, T::Float64;
         push!(Ts, t)
         if real_time set_configuration!(digit.sim.mvis, configuration(digit.sim.state)) end                     
         if !isnothing(controller)
-            cmd = controller(q, q̇, digit)
+            cmd = controller(q, q̇, digit) 
             if controller_mode == :position
                 if digit.engine == :MuJoCo
                     printstyled("No position control using MuJoCo Physics Engine\n", color=:red)

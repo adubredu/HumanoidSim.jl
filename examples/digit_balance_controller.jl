@@ -13,7 +13,7 @@ digit = load_digit(sim; engine=engine)
  
 open(digit.sim.mvis.visualizer) 
 Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3, 
-        controller=posture_torque_controller, controller_mode=:torque) 
+        controller=balance_torque_controller, controller_mode=:torque) 
 
 if engine == :PyBullet digit.p.disconnect() end
 

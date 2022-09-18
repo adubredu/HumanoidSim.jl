@@ -22,7 +22,7 @@ function com_ik(θ₀::Vector{Float64},
 
         error = norm(com_error, Inf) 
         if error < tolerance 
-            printstyled("converged at iter $iter\n";color=:blue)
+            # printstyled("converged at iter $iter\n";color=:blue)
             break
         end 
 

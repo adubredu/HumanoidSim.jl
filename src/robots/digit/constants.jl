@@ -29,6 +29,45 @@ qrightShoulderPitch = 28
 qrightShoulderYaw = 29
 qrightElbow = 30
 
+LeftHipRoll = 1
+LeftHipYaw = 2
+LeftHipPitch = 3
+LeftKnee = 4
+LeftToeA = 5
+LeftToeB = 6
+
+RightHipRoll = 7
+RightHipYaw = 8
+RightHipPitch = 9
+RightKnee = 10
+RightToeA = 11
+RightToeB = 12
+
+LeftShoulderRoll = 13
+LeftShoulderPitch = 14
+LeftShoulderYaw = 15
+LeftElbow = 16
+
+RightShoulderRoll = 17
+RightShoulderPitch = 18
+RightShoulderYaw = 19
+RightElbow = 20
+
+LeftShin = 1
+LeftTarsus = 2
+LeftToePitch = 3
+LeftToeRoll = 4
+LeftHeelSpring = 5
+
+RightShin = 6
+RightTarsus = 7 
+RightToePitch = 8
+RightToeRoll = 9
+RightHeelSpring = 10
+
+NUM_MOTORS = 20
+NUM_JOINTS = 10
+
 qall_joints = ["left-hip-roll", "left-hip-yaw", "left-hip-pitch", "left-knee",
 "left-shin", "left-tarsus", "left-toe-pitch", "left-toe-roll", "left-shoulder-roll",
  "left-shoulder-pitch", "left-shoulder-yaw", "left-elbow", "right-hip-roll", 

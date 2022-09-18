@@ -43,6 +43,8 @@ export Picklerick,
        PicklerickSim
 
 export get_generalized_coordinates,
+       get_motor_positions,
+       get_qall_coordinates,
        load_digit_vis,
        load_digit, 
        update_state!,
@@ -57,7 +59,9 @@ export load_picklerick_vis,
 export  make_posture_controller,
         make_balance_controller,
         posture_position_controller,
-        balance_position_controller
+        posture_torque_controller,
+        balance_torque_controller
+
 
 export initialize_arena!
 
