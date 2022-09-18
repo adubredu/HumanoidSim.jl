@@ -33,10 +33,16 @@ function simulate(digit::Digit, T::Float64;
                 apply_position!(cmd, 0.5*ones(length(cmd)), digit)
             elseif controller_mode == :velocity
                 if digit.engine == :MuJoCo
-                    printstyled("No position control using MuJoCo Physics Engine\n", color=:red)
+                    printstyled("No velocity control using MuJoCo Physics Engine\n", color=:red)
                     break
                 end
                 apply_velocity!(cmd, digit)
+            elseif controller_mode == :torque
+                if digit.engine == :PyBullet
+                    printstyled("No torque control using PyBullet Physics Engine\n", color=:red)
+                    break
+                end
+                apply_torque!(cmd, digit)
             end
         end
         step(digit)
