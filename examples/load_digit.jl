@@ -1,6 +1,5 @@
 using Revise
-using HumanoidSim
-using HumanoidSim.PyBullet 
+using HumanoidSim 
 using HumanoidSim.MeshCat
 using HumanoidSim.RigidBodyDynamics
 
@@ -9,20 +8,16 @@ initialize_arena!(vis)
 sim = DigitSim(vis)
 load_digit_vis(sim)
 
-p = pybullet
-pyplan = pybullet_planning
-
-p.connect(p.DIRECT)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0, 0, -9.81)
-planeID = p.loadURDF("plane.urdf")
-digit = load_digit(p, sim)
+engine = :PyBullet
+digit = load_digit(sim; engine=engine)
 
 open(digit.sim.mvis.visualizer) 
+
+get_generalized_coordinates(digit)
 Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3) 
 
-p.disconnect()
+if engine == :PyBullet digit.p.disconnect() end
 
-# setting animation
+# # setting animation
 println("***setting animation***") 
 setanimation!(digit.sim.mvis, Animation(digit.sim.mvis, Ts, qs))

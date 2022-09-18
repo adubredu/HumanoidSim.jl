@@ -1,11 +1,36 @@
 packagepath() = joinpath(@__DIR__, "models")
 urdfpath() = joinpath(packagepath(), "digit_w_grippers.urdf")
 
-function load_digit(p, sim, init_pose=[0.0, 0.0, 0.92])
-    path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models") 
-    p.setAdditionalSearchPath(path)
-    id = p.loadURDF("digit_w_grippers.urdf", init_pose, useFixedBase=false)
-    digit = Digit(pyconvert(Int64, id), p, sim)
+function load_digit(sim; init_pose=[0.0, 0.0, 0.92], 
+                    engine=:MuJoCo)
+    if engine == :PyBullet
+        p = pybullet
+        p.connect(p.DIRECT)
+        p.setAdditionalSearchPath(pybullet_data.getDataPath())
+        p.setGravity(0, 0, -9.81)
+        p.loadURDF("plane.urdf")
+        path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models") 
+        p.setAdditionalSearchPath(path)
+        id = p.loadURDF("digit_w_grippers.urdf", init_pose, useFixedBase=false)
+        digit = Digit(pyconvert(Int64, id), p, sim, engine)
+
+    elseif engine == :MuJoCo
+        path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
+        robot_path = joinpath(path, "digit-v3.xml")
+        physics = mujoco.Physics.from_xml_path(robot_path) 
+        physics.data.qpos[0:2] = init_pose
+        digit = Digit(-1, physics, sim, engine)
+
+    end
+    return digit
+end
+
+function load_mujoco_digit(p, sim, init_pose=[0.0, 0.0, 0.92])
+    path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
+    robot_path = joinpath(path, "digit-v3.xml")
+    physics = p.Physics.from_xml_path(robot_path) 
+    physics.data.qpos[0:2] = init_pose
+    digit = Digit(1, physics, sim)
     return digit
 end
 

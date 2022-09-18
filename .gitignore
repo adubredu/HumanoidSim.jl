@@ -5,3 +5,4 @@ examples/posture_controller_rbd.jl
 examples/rbd_simulate.jl 
 examples/load_pybullet.jl
 examples/load_digit_rbd.jl
+examples/load_mujoco.jl

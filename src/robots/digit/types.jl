@@ -31,8 +31,9 @@ struct Digit
     joint_names
     joint_ids
     sim::DigitSim
+    engine::Symbol
 
-    function Digit(id, p, sim)
+    function Digit(id, p, sim, engine)
         joint_names = SA["left-hip-roll", "left-hip-yaw", "left-hip-pitch", 
             "left-knee", "left-shin", "left-tarsus", "left-toe-pitch", 
             "left-toe-roll", "left-shoulder-roll", "left-shoulder-pitch", 
@@ -41,7 +42,7 @@ struct Digit
             "right-toe-pitch", "right-toe-roll", "right-shoulder-roll", 
             "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]
         joint_ids = [14, 15, 16, 17, 18, 19, 20, 21, 0, 1, 2, 3, 23, 24, 25, 26, 27, 28, 29, 30, 6, 7, 8, 9]
-        new(id, p, joint_names, joint_ids, sim)
+        new(id, p, joint_names, joint_ids, sim, engine)
     end
 end
 

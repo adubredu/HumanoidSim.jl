@@ -1,5 +1,5 @@
 <mujoco model='digit-v3'>
-  <compiler angle='degree' eulerseq='xyz' meshdir='stl'/>
+  <compiler angle='degree' eulerseq='xyz'/>
   <option gravity='0 0 -9.806' iterations='50' solver='Newton' timestep='0.000500'/>
   <asset>
     <material name='collision' rgba='0.1 0.5 0.9 0.4'/>
@@ -7,43 +7,43 @@
     <material name='robot' rgba='0.9 0.5 0.1 1'/>
     <texture builtin='checker' height='512' name='plane' rgb1='0.2 0.2 0.2' rgb2='0.3 0.3 0.3' type='2d' width='512'/>
     <texture builtin='gradient' height='128' rgb1='0.4 0.6 0.8' rgb2='0 0 0' type='skybox' width='128'/>
-    <mesh name='base' file='torso.stl'/>
-    <mesh name='left-hip-roll' file='hip-yaw-housing.stl'/>
-    <mesh name='left-hip-yaw' file='hip-pitch-housing.stl'/>
-    <mesh name='left-hip-pitch' file='hip-pitch.stl'/>
-    <mesh name='left-knee' file='knee.stl'/>
-    <mesh name='left-shin' file='shin.stl'/>
-    <mesh name='left-tarsus' file='tarsus.stl'/>
-    <mesh name='left-toe-A' file='toe-output.stl'/>
-    <mesh name='left-toe-A-rod' file='toe-A-rod.stl'/>
-    <mesh name='left-toe-B' file='toe-output.stl'/>
-    <mesh name='left-toe-B-rod' file='toe-B-rod.stl'/>
-    <mesh name='left-toe-pitch' file='toe-pitch.stl'/>
-    <mesh name='left-toe-roll' file='toe-roll.stl'/>
-    <mesh name='left-heel-spring' file='heel-spring.stl'/>
-    <mesh name='left-achillies-rod' file='achilles-rod.stl'/>
-    <mesh name='right-hip-roll' scale='1 -1 1' file='hip-yaw-housing.stl'/>
-    <mesh name='right-hip-yaw' scale='1 -1 1' file='hip-pitch-housing.stl'/>
-    <mesh name='right-hip-pitch' scale='1 -1 1' file='hip-pitch.stl'/>
-    <mesh name='right-knee' scale='1 -1 1' file='knee.stl'/>
-    <mesh name='right-shin' scale='1 -1 1' file='shin.stl'/>
-    <mesh name='right-tarsus' scale='1 -1 1' file='tarsus.stl'/>
-    <mesh name='right-toe-A' scale='1 -1 1' file='toe-output.stl'/>
-    <mesh name='right-toe-A-rod' scale='1 -1 1' file='toe-A-rod.stl'/>
-    <mesh name='right-toe-B' scale='1 -1 1' file='toe-output.stl'/>
-    <mesh name='right-toe-B-rod' scale='1 -1 1' file='toe-B-rod.stl'/>
-    <mesh name='right-toe-pitch' scale='1 -1 1' file='toe-pitch.stl'/>
-    <mesh name='right-toe-roll' scale='1 -1 1' file='toe-roll.stl'/>
-    <mesh name='right-heel-spring' scale='1 -1 1' file='heel-spring.stl'/>
-    <mesh name='right-achillies-rod' scale='1 -1 1' file='achilles-rod.stl'/>
-    <mesh name='left-shoulder-roll' file='arm-L1.stl'/>
-    <mesh name='left-shoulder-pitch' file='arm-L2.stl'/>
-    <mesh name='left-shoulder-yaw' file='arm-L3.stl'/>
-    <mesh name='left-elbow' file='arm-L4.stl'/>
-    <mesh name='right-shoulder-roll' scale='1 -1 1' file='arm-L1.stl'/>
-    <mesh name='right-shoulder-pitch' scale='1 -1 1' file='arm-L2.stl'/>
-    <mesh name='right-shoulder-yaw' scale='1 -1 1' file='arm-L3.stl'/>
-    <mesh name='right-elbow' scale='1 -1 1' file='arm-L4.stl'/>
+    <mesh name='base' file='torso.obj'/>
+    <mesh name='left-hip-roll' file='hip-yaw-housing.obj'/>
+    <mesh name='left-hip-yaw' file='hip-pitch-housing.obj'/>
+    <mesh name='left-hip-pitch' file='hip-pitch.obj'/>
+    <mesh name='left-knee' file='knee.obj'/>
+    <mesh name='left-shin' file='shin.obj'/>
+    <mesh name='left-tarsus' file='tarsus.obj'/>
+    <mesh name='left-toe-A' file='toe-output.obj'/>
+    <mesh name='left-toe-A-rod' file='toe-A-rod.obj'/>
+    <mesh name='left-toe-B' file='toe-output.obj'/>
+    <mesh name='left-toe-B-rod' file='toe-B-rod.obj'/>
+    <mesh name='left-toe-pitch' file='toe-pitch.obj'/>
+    <mesh name='left-toe-roll' file='toe-roll.obj'/>
+    <mesh name='left-heel-spring' file='heel-spring.obj'/>
+    <mesh name='left-achillies-rod' file='achilles-rod.obj'/>
+    <mesh name='right-hip-roll' scale='1 -1 1' file='hip-yaw-housing.obj'/>
+    <mesh name='right-hip-yaw' scale='1 -1 1' file='hip-pitch-housing.obj'/>
+    <mesh name='right-hip-pitch' scale='1 -1 1' file='hip-pitch.obj'/>
+    <mesh name='right-knee' scale='1 -1 1' file='knee.obj'/>
+    <mesh name='right-shin' scale='1 -1 1' file='shin.obj'/>
+    <mesh name='right-tarsus' scale='1 -1 1' file='tarsus.obj'/>
+    <mesh name='right-toe-A' scale='1 -1 1' file='toe-output.obj'/>
+    <mesh name='right-toe-A-rod' scale='1 -1 1' file='toe-A-rod.obj'/>
+    <mesh name='right-toe-B' scale='1 -1 1' file='toe-output.obj'/>
+    <mesh name='right-toe-B-rod' scale='1 -1 1' file='toe-B-rod.obj'/>
+    <mesh name='right-toe-pitch' scale='1 -1 1' file='toe-pitch.obj'/>
+    <mesh name='right-toe-roll' scale='1 -1 1' file='toe-roll.obj'/>
+    <mesh name='right-heel-spring' scale='1 -1 1' file='heel-spring.obj'/>
+    <mesh name='right-achillies-rod' scale='1 -1 1' file='achilles-rod.obj'/>
+    <mesh name='left-shoulder-roll' file='arm-L1.obj'/>
+    <mesh name='left-shoulder-pitch' file='arm-L2.obj'/>
+    <mesh name='left-shoulder-yaw' file='arm-L3.obj'/>
+    <mesh name='left-elbow' file='arm-L4.obj'/>
+    <mesh name='right-shoulder-roll' scale='1 -1 1' file='arm-L1.obj'/>
+    <mesh name='right-shoulder-pitch' scale='1 -1 1' file='arm-L2.obj'/>
+    <mesh name='right-shoulder-yaw' scale='1 -1 1' file='arm-L3.obj'/>
+    <mesh name='right-elbow' scale='1 -1 1' file='arm-L4.obj'/>
   </asset>
   <default>
     <default class='collision'>

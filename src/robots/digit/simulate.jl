@@ -1,4 +1,13 @@
 import RigidBodyDynamics.simulate
+import Base.step
+
+function step(digit::Digit)
+    if digit.engine == :PyBullet
+        digit.p.stepSimulation()
+    elseif digit.engine == :MuJoCo
+        digit.p.step()
+    end
+end
 
 function simulate(digit::Digit, T::Float64; 
                         Δt=1e-3, 
@@ -17,12 +26,21 @@ function simulate(digit::Digit, T::Float64;
         if !isnothing(controller)
             cmd = controller(q, q̇, digit)
             if controller_mode == :position
+                if digit.engine == :MuJoCo
+                    printstyled("No position control using MuJoCo Physics Engine\n", color=:red)
+                    break
+                end
                 apply_position!(cmd, 0.5*ones(length(cmd)), digit)
-            else
+            elseif controller_mode == :velocity
+
+                if digit.engine == :MuJoCo
+                    printstyled("No position control using MuJoCo Physics Engine\n", color=:red)
+                    break
+                end
                 apply_velocity!(cmd, digit)
             end
         end
-        digit.p.stepSimulation() 
+        step(digit)
     end
     return Ts, qs, q̇s
 end

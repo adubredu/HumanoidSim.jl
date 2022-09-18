@@ -1,6 +1,7 @@
 module HumanoidSim
 
 using PyBullet
+using MuJoCo
 using StaticArrays
 using PyBullet.PythonCall
 using GeometryBasics
@@ -44,6 +45,7 @@ export Picklerick,
 export get_generalized_coordinates,
        load_digit_vis,
        load_digit,
+       load_mujoco_digit,
        update_state!,
        simulate,
        apply_velocity!,
