@@ -248,7 +248,7 @@ function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
     kp_hippitch_stand = 50.0
     kp_knee_stand = 80.0
     kp_toe_stand = 3.0  
-    kp_knee_comp_stand = 27
+    kp_knee_comp_stand = 270
     kd_knee_comp_stand = 30
 
     kp_shoulderroll_stand = 100.0
