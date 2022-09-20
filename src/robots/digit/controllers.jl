@@ -170,7 +170,7 @@ function posture_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
 end
 
 function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
-                         digit::Digit;  com_goal=[0.0, 0.0, 0.95])
+                         digit::Digit;  com_goal=[0.0, 0.0, 0.9])
     θ, θ̇  = get_qall_coordinates(digit)
     q_motors = get_motor_positions(digit) 
     step_width = 0.27 
@@ -206,6 +206,13 @@ function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
     q_motors_des[RightHipPitch] = θd[qrightHipPitch]
     q_motors_des[RightKnee] = θd[qrightKnee]
 
+    # q_motors_des[LeftHipRoll] = 0.337
+    # q_motors_des[LeftHipPitch] = 0.0
+    # q_motors_des[LeftKnee] = 0.0
+    # q_motors_des[RightHipRoll] = -0.337
+    # q_motors_des[RightHipPitch] = 0.0
+    # q_motors_des[RightKnee] = 0.0
+
     q_motors_des[LeftHipYaw] = 0.0
     q_motors_des[RightHipYaw] = 0.0
 
@@ -222,26 +229,32 @@ function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
                 (p_left_toe_aligned + p_right_toe_aligned)
     toe_pitch_error = com_midpoint_error[1] 
 
-    q_motors_des[LeftToeA] =   q_motors[LeftToeA]  + toe_pitch_error
+    q_motors_des[LeftToeA] =  q_motors[LeftToeA]  + toe_pitch_error
     q_motors_des[LeftToeB] = q_motors[LeftToeB] - toe_pitch_error
-    q_motors_des[RightToeA] =  q_motors[RightToeA] - toe_pitch_error
-    q_motors_des[RightToeB] =  q_motors[RightToeB]+ toe_pitch_error 
+    q_motors_des[RightToeA] = q_motors[RightToeA] - toe_pitch_error
+    q_motors_des[RightToeB] = q_motors[RightToeB] + toe_pitch_error 
+
+    # q_motors_des[LeftToeA] =  -0.15
+    # q_motors_des[LeftToeB] = 0.11
+    # q_motors_des[RightToeA] = 0.15
+    # q_motors_des[RightToeB] = -0.11
+
 
     τ = zeros(NUM_MOTORS) 
     q_motors_error = q_motors - q_motors_des  
  
-    kp_hiproll_stand = 500   
-    kp_hipyaw_stand = 500.0
-    kp_hippitch_stand = 500.0
-    kp_knee_stand = 500.0
-    kp_toe_stand = 500.0  
-    kp_knee_comp_stand = 500.0
-    kd_knee_comp_stand = 500
+    kp_hiproll_stand = 80   
+    kp_hipyaw_stand = 50.0
+    kp_hippitch_stand = 50.0
+    kp_knee_stand = 80.0
+    kp_toe_stand = 3.0  
+    kp_knee_comp_stand = 27
+    kd_knee_comp_stand = 30
 
-    kp_shoulderroll_stand = 500.0
-    kp_shoulderpitch_stand = 500.0
-    kp_shoulderyaw_stand = 500.0
-    kp_elbow_stand = 500.0 
+    kp_shoulderroll_stand = 100.0
+    kp_shoulderpitch_stand = 100.0
+    kp_shoulderyaw_stand = 100.0
+    kp_elbow_stand = 100.0
 
     τ[LeftHipRoll] = -kp_hiproll_stand * q_motors_error[LeftHipRoll]
     τ[LeftHipYaw] = -kp_hipyaw_stand * q_motors_error[LeftHipYaw]
