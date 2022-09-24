@@ -14,22 +14,22 @@ function com_ik(θ₀::Vector{Float64},
     θ[qrightHipYaw] = 0.0   
     iter = 1
     for i = 1:max_iter
-        θ[qleftShinToTarsus] = -θ[qleftKnee]
-        θ[qrightShinToTarsus] = -θ[qrightKnee]
+        θ[qleftTarsus] = -θ[qleftKnee]
+        θ[qrightTarsus] = -θ[qrightKnee]
 
         com_pos = kin.p_com_wrt_feet(θ)
         com_error = com_pos - com_goal 
 
         error = norm(com_error, Inf) 
         if error < tolerance 
-            printstyled("converged at iter $iter\n";color=:blue)
+            # printstyled("converged at iter $iter\n";color=:blue)
             break
         end 
 
         Jall = kin.Jp_com_wrt_feet(θ) 
         J = Jall[1:end, leg_indices]
-        J[1:end, 3] -= Jall[1:end, qleftShinToTarsus]
-        J[1:end, 6] -= Jall[1:end, qrightShinToTarsus]
+        J[1:end, 3] -= Jall[1:end, qleftTarsus]
+        J[1:end, 6] -= Jall[1:end, qrightTarsus]
 
         θΔ = J \ com_error
         maxofD = max(θΔ...)
