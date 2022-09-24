@@ -28,7 +28,9 @@ RigidBodyDynamics = "2"
 Rotations = "1"  
 Reexport = "1" 
 MeshCatMechanisms = "0.8"   
-Revise = "3 
+Revise = "3"
+PyBullet = "0.1"
+MuJoCo = "0.1"
 StaticArrays = "1"
 julia = "1"
 
