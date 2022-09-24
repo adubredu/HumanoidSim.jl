@@ -4,15 +4,10 @@ import time
 import pybullet_data
 
 p.connect(p.GUI)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.loadURDF("plane.urdf")
 p.setAdditionalSearchPath('..')
-p.setGravity(0,0,-9.81)
-humanoid = p.loadURDF("digit_w_grippers.urdf", [0.0, 0.0, 2.0], useFixedBase=False) 
-#humanoid = p.loadMJCF("digit-v3.xml")
-#humanoid = humanoid[1]
+humanoid = p.loadURDF("picklerick.urdf",useFixedBase=True) 
 
-gravId = p.addUserDebugParameter("gravity", -10, 10, -10)
+gravId = p.addUserDebugParameter("gravity", -10, 10, 0)
 jointIds = []
 paramIds = []
 
@@ -29,12 +24,11 @@ for j in range(p.getNumJoints(humanoid)):
     jointIds.append(j)
     paramIds.append(p.addUserDebugParameter(jointName.decode("utf-8"), -4, 4, 0))
 
-# p.setRealTimeSimulation(1)
+p.setRealTimeSimulation(1)
 while (1):
-  #p.setGravity(0, 0, p.readUserDebugParameter(gravId))
-  #for i in range(len(paramIds)):
-  #  c = paramIds[i]
-  #  targetPos = p.readUserDebugParameter(c)
-  #  p.setJointMotorControl2(humanoid, jointIds[i], p.POSITION_CONTROL, targetPos, force=5 * 240.)
-  p.stepSimulation()
+  p.setGravity(0, 0, p.readUserDebugParameter(gravId))
+  for i in range(len(paramIds)):
+    c = paramIds[i]
+    targetPos = p.readUserDebugParameter(c)
+    p.setJointMotorControl2(humanoid, jointIds[i], p.POSITION_CONTROL, targetPos, force=5 * 240.)
   time.sleep(0.01)
