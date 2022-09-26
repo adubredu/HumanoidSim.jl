@@ -11,6 +11,7 @@ mutable struct DigitSim
     g_right_ee::Union{Point3D, Nothing}
     world_frame 
     leg_indices 
+    arm_indices
     init_config
     com_goal
     θ_min
@@ -19,9 +20,10 @@ mutable struct DigitSim
     function DigitSim(vis::Visualizer)
         Δt = 10E-3 
         leg_indices = [7, 9, 10, 19,21,22]
+        arm_indices = [15, 16, 17, 18, 27, 28, 29, 30]
         θ_min = [-1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.0472, -0.698, -1.0472, -1.2392, -0.35, -0.8779, -0.785, -0.6109, -1.309, -2.5307, -1.7453, -1.3526, -1.0472, -0.698, -1.57, -0.8727, -0.35, -1.2497, -0.785, -0.6109, -1.309, -2.5307, -1.7453, -1.3526]
         θ_max = [1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308,  1.0472, 0.698, 1.57, 0.8727, 0.35, 1.2497, 0.785, 0.6109, 1.309, 2.5307, 1.7453, 1.3526, 1.0472, 0.698, 1.0472, 1.2392, 0.35, 0.8779, 0.785, 0.6109, 1.309, 2.5307, 1.7453, 1.3526]
-        new(vis, nothing, nothing, nothing, nothing, nothing, [], Δt, nothing, nothing, nothing, leg_indices, nothing, nothing, θ_min, θ_max)
+        new(vis, nothing, nothing, nothing, nothing, nothing, [], Δt, nothing, nothing, nothing, leg_indices, arm_indices, nothing, nothing, θ_min, θ_max)
     end
 end
 
@@ -33,6 +35,7 @@ struct Digit
     joint_ids
     sim::DigitSim
     engine::Symbol
+    gripper
 
     function Digit(id, p, sim, engine)
         joint_names = SA["left-hip-roll", "left-hip-yaw", "left-hip-pitch", 
@@ -48,7 +51,7 @@ struct Digit
         "left-shoulder-yaw", "left-elbow", "right-shoulder-roll", 
         "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]
         joint_ids = [14, 15, 16, 17, 18, 19, 20, 21, 0, 1, 2, 3, 23, 24, 25, 26, 27, 28, 29, 30, 6, 7, 8, 9]
-        new(id, p, joint_names, motor_names, joint_ids, sim, engine)
+        new(id, p, joint_names, motor_names, joint_ids, sim, engine, nothing)
     end
 end
 
