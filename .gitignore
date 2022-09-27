@@ -1,4 +1,4 @@
-/Manifest.toml
+# /Manifest.toml
 .CondaPkg
 examples/balance*
 examples/posture_controller_rbd.jl
