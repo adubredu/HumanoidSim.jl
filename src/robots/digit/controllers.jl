@@ -149,13 +149,13 @@ function make_balance_controller_rbd(sim, com_goal)
 end
 
 function posture_position_controller(q::Vector{Float64}, q̇::Vector{Float64}, 
-                                    digit::Digit)
+                                    digit::Digit; data=nothing)
     pos = digit.sim.θᵣ
     return pos
 end
 
 function posture_torque_controller(q::Vector{Float64}, q̇::Vector{Float64}, 
-    digit::Digit)
+    digit::Digit; data=nothing)
     Kp = 500.0
     Kd = 0.5
     θrefs = [0.32869133647921467, -0.02792180592249217, 0.3187324455828634, 0.36118057019763633, -0.14684031092035302, 
@@ -170,7 +170,7 @@ function posture_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
 end
 
 function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
-                         digit::Digit;  com_goal=[0.0, 0.0, 0.9])
+                         digit::Digit;  com_goal=[0.0, 0.0, 0.9], data=nothing)
     θ, θ̇  = get_qall_coordinates(digit)
     q_motors = get_motor_positions(digit) 
     step_width = 0.27 
