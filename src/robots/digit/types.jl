@@ -12,6 +12,7 @@ mutable struct DigitSim
     world_frame 
     leg_indices 
     arm_indices
+    motor_indices
     init_config
     com_goal
     θ_min
@@ -21,9 +22,10 @@ mutable struct DigitSim
         Δt = 10E-3 
         leg_indices = [7, 9, 10, 19,21,22]
         arm_indices = [15, 16, 17, 18, 27, 28, 29, 30]
+        motor_indices = [7, 8, 9, 10, 13,14, 19, 20, 21, 22, 25, 26, 15,16,17,18, 27,28,29,30]
         θ_min = [-1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.79e+308, -1.0472, -0.698, -1.0472, -1.2392, -0.35, -0.8779, -0.785, -0.6109, -1.309, -2.5307, -1.7453, -1.3526, -1.0472, -0.698, -1.57, -0.8727, -0.35, -1.2497, -0.785, -0.6109, -1.309, -2.5307, -1.7453, -1.3526]
         θ_max = [1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308, 1.79e+308,  1.0472, 0.698, 1.57, 0.8727, 0.35, 1.2497, 0.785, 0.6109, 1.309, 2.5307, 1.7453, 1.3526, 1.0472, 0.698, 1.0472, 1.2392, 0.35, 0.8779, 0.785, 0.6109, 1.309, 2.5307, 1.7453, 1.3526]
-        new(vis, nothing, nothing, nothing, nothing, nothing, [], Δt, nothing, nothing, nothing, leg_indices, arm_indices, nothing, nothing, θ_min, θ_max)
+        new(vis, nothing, nothing, nothing, nothing, nothing, [], Δt, nothing, nothing, nothing, leg_indices, arm_indices, motor_indices, nothing, nothing, θ_min, θ_max)
     end
 end
 
