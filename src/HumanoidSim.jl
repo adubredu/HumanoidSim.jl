@@ -13,8 +13,11 @@ using CoordinateTransformations
 using Rotations
 using Colors
 using Reexport
+using Interpolations
+using Interpolations: interpolate, Gridded, Linear
 
 include("visuals.jl")
+include("types.jl")
 
 # digit
 include("robots/digit/constants.jl")
@@ -37,7 +40,8 @@ include("robots/picklerick/load.jl")
 include("robots/picklerick/simulate.jl")
 
 export  Digit,
-        DigitSim
+        DigitSim,
+        Env
 
 export Picklerick,
        PicklerickSim

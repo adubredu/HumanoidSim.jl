@@ -12,7 +12,8 @@ end
 function simulate(digit::Digit, T::Float64; 
                         Δt=1e-3, 
                         real_time=false, controller=nothing, 
-                        controller_mode=:position, data=nothing)
+                        controller_mode=:position, data=nothing,
+                        env=nothing)
     qs = SegmentedVector{JointID, Float64, Base.OneTo{JointID}, Vector{Float64}}[]
     q̇s = SegmentedVector{JointID, Float64, Base.OneTo{JointID}, Vector{Float64}}[]
     Ts = Float64[]
@@ -45,7 +46,40 @@ function simulate(digit::Digit, T::Float64;
                 apply_torque!(cmd, digit)
             end
         end
+        if !isnothing(env)
+            for object in env.objects
+                f = env.dynamics[object]
+                f(object, t, env)
+            end
+        end
         step(digit)
     end
-    return Ts, qs, q̇s
+    return Ts, qs, q̇s, env
+end
+
+function MeshCat.Animation(mvis::MechanismVisualizer,
+    times::AbstractVector{<:Real},
+    configurations::AbstractVector{<:AbstractVector{<:Real}},
+    env::Env;
+    fps::Integer=30)
+@assert axes(times) == axes(configurations)
+interpolated_configurations = interpolate((times,), configurations, Gridded(Interpolations.Linear()))
+env_interps = Dict()
+for obj in env.objects
+    env_interps[obj] = interpolate((times,), env.trajectories[obj], Gridded(Interpolations.Linear()))
+end
+animation = Animation()
+num_frames = floor(Int, (times[end] - first(times)) * fps)
+for frame in 0 : num_frames
+    time = first(times) + frame / fps
+    let mvis = mvis, interpolated_configurations = interpolated_configurations, time=time
+        atframe(animation,  frame) do
+            set_configuration!(mvis, interpolated_configurations(time))
+            for obj in env.objects
+                settransform!(mvis.visualizer[obj], Translation(env_interps[obj](time)...))
+            end
+        end
+    end
+end
+return animation
 end
