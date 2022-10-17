@@ -24,6 +24,12 @@ function simulate(digit::Digit, T::Float64;
         push!(q̇s, copy(q̇state)) 
         push!(Ts, t)
         if real_time set_configuration!(digit.sim.mvis, configuration(digit.sim.state)) end                     
+        if !isnothing(env)
+            for object in env.objects
+                f = env.dynamics[object]
+                f(object, t, env)
+            end
+        end
         if !isnothing(controller)
             cmd = controller(q, q̇, digit;data=data) 
             if controller_mode == :position
@@ -44,12 +50,6 @@ function simulate(digit::Digit, T::Float64;
                     break
                 end
                 apply_torque!(cmd, digit)
-            end
-        end
-        if !isnothing(env)
-            for object in env.objects
-                f = env.dynamics[object]
-                f(object, t, env)
             end
         end
         step(digit)
