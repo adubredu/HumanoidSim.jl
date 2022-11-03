@@ -20,5 +20,9 @@ include("p_COM.jl")
 include("v_COM.jl")
 include("p_toe_pitch_joint_left.jl")
 include("p_toe_pitch_joint_right.jl")
+include("J_vc_walk_LS.jl")
+include("J_vc_walk_RS.jl")
+include("vc_walk_LS.jl")
+include("vc_walk_RS.jl")
 
 end
