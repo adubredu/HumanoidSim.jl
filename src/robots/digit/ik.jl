@@ -80,7 +80,7 @@ function arm_ik(θ₀::Vector{Float64},
 
         maxofD = max(θΔ...)
         if maxofD > maxΔ*2
-        θΔ = 2 *maxΔ * (θΔ /maxofD)
+            θΔ = 2 *maxΔ * (θΔ /maxofD)
         end 
         θ[arm_indices] -= θΔ   
 
@@ -89,5 +89,50 @@ function arm_ik(θ₀::Vector{Float64},
         iter+=1
     end
     if iter >= max_iter printstyled("Arm IK Did not converge\n"; bold=true, color=:red) end 
+    return θ
+end
+
+function walk_ik(θ₀::Vector, θ̇₀::Vector,  vc_des::Vector,
+    swing_foot::Symbol,
+    digit; 
+    max_iter=200, 
+    tolerance=1e-3, maxΔ = 0.1)
+
+    θ = copy(θ₀) 
+    θ̇ = copy(θ̇₀)
+    if swing_foot == :left
+        indices = [qleftHipRoll, qleftHipPitch, qleftKnee]
+        vc_func = kin.p_left_toe_mid
+        Jvc_func = kin.Jp_left_toe_mid
+    else
+        indices = [qrightHipRoll, qrightHipPitch, qrightKnee]
+        vc_func = kin.p_right_toe_mid
+        Jvc_func = kin.Jp_right_toe_mid
+    end
+    θ[qbase_yaw] = 0.0 
+    iter = 1
+    for i=1:max_iter
+        vc = vc_func(θ)
+        vc_error = vc - vc_des
+        error = norm(vc_error, Inf)
+
+        if error < tolerance
+            printstyled("Walk IK converged at iter $iter\n";color=:blue)
+            break
+        end
+        Jvc_all = Jvc_func(θ)
+        Jvc = Jvc_all[:, indices]
+
+        θΔ = Jvc \ vc_error
+
+        maxofD = max(θΔ...)
+        if maxofD > maxΔ*2
+            θΔ = 2 *maxΔ * (θΔ /maxofD)
+        end 
+        θ[indices] -= θΔ 
+        θ[indices] = clamp.(θ[indices], digit.sim.θ_min[indices], digit.sim.θ_max[indices])
+        iter+=1
+    end
+    if iter >= max_iter printstyled("Walk IK Did not converge\n"; bold=true, color=:red) end 
     return θ
 end

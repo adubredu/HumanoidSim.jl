@@ -196,7 +196,7 @@ end
 function get_qstate_from_qall(qall::Vector{Float64})
     q = zeros(31)
     q[5:7] = qall[1:3]
-    q[1:4] = rpy_to_quat(qall[4:6])
+    q[1:4] = ypr_to_quat(qall[4:6])
     q[8]  = qall[7]  
     q[12] =  qall[8]
     q[16] = qall[9]

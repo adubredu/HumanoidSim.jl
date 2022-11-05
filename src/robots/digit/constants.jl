@@ -74,3 +74,26 @@ qall_joints = ["left-hip-roll", "left-hip-yaw", "left-hip-pitch", "left-knee",
  "right-hip-yaw", "right-hip-pitch", "right-knee", "right-shin", "right-tarsus",
   "right-toe-pitch", "right-toe-roll", "right-shoulder-roll",
   "right-shoulder-pitch", "right-shoulder-yaw", "right-elbow"]
+
+name_to_index = Dict(
+    "left-hip-roll" => qleftHipRoll,
+    "left-hip-yaw" => qleftHipYaw, 
+    "left-hip-pitch" => qleftHipPitch, 
+    "left-knee" => qleftKnee, 
+    "right-hip-roll" =>qrightHipRoll, 
+    "right-hip-yaw" => qrightHipYaw, 
+    "right-hip-pitch" => qrightHipPitch, 
+    "right-knee" => qrightKnee,
+    "left-shoulder-roll" =>qleftShoulderRoll, 
+    "left-shoulder-pitch" => qleftShoulderPitch, 
+    "left-shoulder-yaw" => qleftShoulderYaw, 
+    "left-elbow" =>qleftElbow, 
+    "right-shoulder-roll" => qrightShoulderRoll, 
+    "right-shoulder-pitch" => qrightShoulderPitch, 
+    "right-shoulder-yaw" => qrightShoulderYaw, 
+    "right-elbow" => qrightElbow,
+    "left-toe-A" => -1,
+    "left-toe-B" => -1, 
+    "right-toe-A" => -1,
+    "right-toe-B" => -1
+)

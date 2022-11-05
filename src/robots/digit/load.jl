@@ -18,7 +18,6 @@ function load_digit(sim; init_pose=[0.0, 0.0, 0.92],
         path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
         robot_path = joinpath(path, "digit-v3.xml")
         physics = mujoco.Physics.from_xml_path(robot_path) 
-        # physics.data.qpos[0:2] = init_pose
         digit = Digit(-1, physics, sim, engine)
         set_nominal_configuration(digit)
     end
@@ -82,10 +81,9 @@ function set_nominal_state!(state::MechanismState)
     return state
 end
 
-function load_digit_vis(sim::DigitSim)
-    mech  = mechanism(add_flat_ground=true) 
-    state = MechanismState(mech)
-    # set_nominal_state!(state)
+function load_digit_vis(sim::DigitSim; floating=true)
+    mech  = mechanism(floating=floating, add_flat_ground=true) 
+    state = MechanismState(mech) 
 
     mvis = MechanismVisualizer(state.mechanism, URDFVisuals(urdfpath(); package_path=[packagepath()]), sim.vis) 
     set_configuration!(mvis, configuration(state))  

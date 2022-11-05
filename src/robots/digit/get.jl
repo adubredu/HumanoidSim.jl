@@ -14,10 +14,7 @@ function get_generalized_coordinates(digit::Digit)
 
     elseif digit.engine == :MuJoCo
         p = digit.p
-        base_orientation_quat = p.data.qpos[3:6]
-        # tmp = base_orientation_quat[3]
-        # base_orientation_quat[3] = base_orientation_quat[0]
-        # base_orientation_quat[0] = tmp
+        base_orientation_quat = p.data.qpos[3:6] 
         base_position = p.data.qpos[0:2]
         base_linear_velocity = p.data.qvel[0:2]
         base_angular_velocity = p.data.qvel[3:5]
@@ -74,4 +71,14 @@ function get_motor_positions(digit::Digit)
     pos = [pyconvert(Float64, digit.p.named.data.qpos[name][0]) 
             for name in digit.motor_names]
     return pos
+end
+
+function get_motor_positions_from_q(q::Vector, digit::Digit)
+    motor_pos = []
+    for name in digit.motor_names
+        id = name_to_index[name]
+        if id == -1 push!(motor_pos, 0.0); continue; end
+        push!(motor_pos, q[id])
+    end
+    return motor_pos
 end

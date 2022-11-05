@@ -37,7 +37,7 @@ function simulate(digit::Digit, T::Float64;
                     printstyled("No position control using MuJoCo Physics Engine\n", color=:red)
                     break
                 end
-                apply_position!(cmd, 0.5*ones(length(cmd)), digit)
+                apply_position!(cmd, zero(cmd), digit)
             elseif controller_mode == :velocity
                 if digit.engine == :MuJoCo
                     printstyled("No velocity control using MuJoCo Physics Engine\n", color=:red)
@@ -62,24 +62,24 @@ function MeshCat.Animation(mvis::MechanismVisualizer,
     configurations::AbstractVector{<:AbstractVector{<:Real}},
     env::Env;
     fps::Integer=30)
-@assert axes(times) == axes(configurations)
-interpolated_configurations = interpolate((times,), configurations, Gridded(Interpolations.Linear()))
-env_interps = Dict()
-for obj in env.objects
-    env_interps[obj] = interpolate((times,), env.trajectories[obj], Gridded(Interpolations.Linear()))
-end
-animation = Animation()
-num_frames = floor(Int, (times[end] - first(times)) * fps)
-for frame in 0 : num_frames
-    time = first(times) + frame / fps
-    let mvis = mvis, interpolated_configurations = interpolated_configurations, time=time
-        atframe(animation,  frame) do
-            set_configuration!(mvis, interpolated_configurations(time))
-            for obj in env.objects
-                settransform!(mvis.visualizer[obj], Translation(env_interps[obj](time)...))
+    @assert axes(times) == axes(configurations)
+    interpolated_configurations = interpolate((times,), configurations, Gridded(Interpolations.Linear()))
+    env_interps = Dict()
+    for obj in env.objects
+        env_interps[obj] = interpolate((times,), env.trajectories[obj], Gridded(Interpolations.Linear()))
+    end
+    animation = Animation()
+    num_frames = floor(Int, (times[end] - first(times)) * fps)
+    for frame in 0 : num_frames
+        time = first(times) + frame / fps
+        let mvis = mvis, interpolated_configurations = interpolated_configurations, time=time
+            atframe(animation,  frame) do
+                set_configuration!(mvis, interpolated_configurations(time))
+                for obj in env.objects
+                    settransform!(mvis.visualizer[obj], Translation(env_interps[obj](time)...))
+                end
             end
         end
     end
-end
-return animation
+    return animation
 end
