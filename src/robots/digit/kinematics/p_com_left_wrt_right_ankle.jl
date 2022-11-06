@@ -1,5 +1,4 @@
-static void output1(Eigen::Ref<Eigen::VectorXd> p_output1,const Eigen::Ref<const Eigen::VectorXd> var1)
-{
+function   p_com_left_wrt_right_ankle_helper(p_output1, var1)
   t620 = cos(var1[3+1])
   t794 = cos(var1[5+1])
   t804 = sin(var1[3+1])
@@ -1477,11 +1476,10 @@ static void output1(Eigen::Ref<Eigen::VectorXd> p_output1,const Eigen::Ref<const
   p_output1[5+1]=t4151 + t4152 + t4153 + t4159 + t4166 + t4173 + t4182 + t4188 + t4195 + t4201 + t4210 + t4218 + t4226 + t4232 + t4238 + t4246 + t4253 + t4262 + t4270 + t4278 + t4286 + t4295 + t4301 + t4685 + t4688 + t4703 + t4704 + t4705 + t4733 + t4734 + t4735 + t4758 + t4759 + t4760 + t4787 + t4789 + t4790 + t4815 + t4816 + t4817 + t4843 + t4845 + t4847 + 0.061947*t4853 - 0.792446*t4858 + 0.402615*t4863
 end
 
+ 
 
-
-void gen::kin::p_com_left_wrt_right_ankle(Eigen::Ref<Eigen::VectorXd> p_output1, const Eigen::Ref<const Eigen::VectorXd> var1)
-{
-  // Call Subroutines
-  output1(p_output1, var1)
-
+function p_com_left_wrt_right_ankle(var1)
+  p_output1 = zeros(6)
+  p_com_left_wrt_right_ankle_helper(p_output1, var1)
+  return p_output1
 end

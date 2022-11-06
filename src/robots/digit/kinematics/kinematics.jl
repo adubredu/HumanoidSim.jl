@@ -46,6 +46,6 @@ include("p_left_wrt_right_ankle.jl")
 include("Jp_left_wrt_right_ankle.jl")      
 include("p_right_wrt_left_ankle.jl")
 include("Jp_right_wrt_left_ankle.jl")
-
+include("p_com_left_wrt_right_ankle.jl")
 
 end

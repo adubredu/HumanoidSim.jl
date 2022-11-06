@@ -101,17 +101,20 @@ function walk_ik(θ₀::Vector, θ̇₀::Vector,  vc_des::Vector,
     θ = copy(θ₀) 
     θ̇ = copy(θ̇₀)
     if swing_foot == :left
-        indices = [qleftHipRoll, qleftHipPitch, qleftKnee]
-        vc_func = kin.p_left_ankle
-        Jvc_func = kin.Jp_left_ankle
+        indices = [qleftHipRoll, qleftHipPitch, qleftKnee, qrightKnee]
+        vc_func = kin.p_left_wrt_right_ankle
+        Jvc_func = kin.Jp_left_wrt_right_ankle
     else
-        indices = [qrightHipRoll, qrightHipPitch, qrightKnee]
-        vc_func = kin.p_right_ankle
-        Jvc_func = kin.Jp_right_ankle
+        indices = [qrightHipRoll, qrightHipPitch, qrightKnee, qleftKnee]
+        vc_func = kin.p_right_wrt_left_ankle
+        Jvc_func = kin.Jp_right_wrt_left_ankle
     end
     θ[qbase_yaw] = 0.0 
     iter = 1
     for i=1:max_iter
+        θ[qleftTarsus] = -θ[qleftKnee]
+        θ[qrightTarsus] = -θ[qrightKnee]
+
         vc = vc_func(θ)
         vc_error = vc - vc_des
         error = norm(vc_error, Inf)
@@ -121,6 +124,8 @@ function walk_ik(θ₀::Vector, θ̇₀::Vector,  vc_des::Vector,
             break
         end
         Jvc_all = Jvc_func(θ)
+        Jvc_all[1:end, qleftKnee] -= Jvc_all[1:end, qleftTarsus]
+        Jvc_all[1:end, qrightKnee] -= Jvc_all[1:end, qrightTarsus]
         Jvc = Jvc_all[:, indices]
 
         θΔ = Jvc \ vc_error
@@ -137,45 +142,3 @@ function walk_ik(θ₀::Vector, θ̇₀::Vector,  vc_des::Vector,
     return θ
 end
 
-function com_world_ik(θ₀::Vector{Float64}, 
-    com_goal::Vector{Float64},
-    sim; 
-    max_iter=200, 
-    tolerance=1e-3, maxΔ = 0.1)
-    θ = copy(θ₀)
-    leg_indices = [qleftHipRoll, qleftHipPitch, qleftKnee, qrightHipRoll, qrightHipPitch, qrightKnee]  
-    θ[qbase_pitch] = 0.0 
-    θ[qbase_roll] = 0.0 
-    θ[qleftHipYaw] = 0.0 
-    θ[qrightHipYaw] = 0.0   
-    iter = 1
-    for i = 1:max_iter
-        θ[qleftTarsus] = -θ[qleftKnee]
-        θ[qrightTarsus] = -θ[qrightKnee]
-
-        com_pos = kin.p_com(θ)
-        com_error = com_pos - com_goal 
-
-        error = norm(com_error, Inf) 
-        if error < tolerance 
-            # printstyled("converged at iter $iter\n";color=:blue)
-            break
-        end 
-
-        Jall = kin.Jp_com(θ) 
-        J = Jall[1:end, leg_indices]
-        J[1:end, 3] -= Jall[1:end, qleftTarsus]
-        J[1:end, 6] -= Jall[1:end, qrightTarsus]
-
-        θΔ = J \ com_error
-        maxofD = max(θΔ...)
-        if maxofD > maxΔ
-            θΔ = maxΔ * (θΔ /maxofD)
-        end 
-        θ[leg_indices] -= θΔ   
-        θ[leg_indices] = clamp.(θ[leg_indices], sim.θ_min[leg_indices], sim.θ_max[leg_indices])
-        iter+=1
-    end
-    if iter > max_iter printstyled("Did not converge\n"; bold=true, color=:red) end 
-    return θ
-end
