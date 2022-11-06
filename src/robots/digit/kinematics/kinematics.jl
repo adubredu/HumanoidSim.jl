@@ -29,5 +29,23 @@ include("p_left_toe_mid.jl")
 include("Jp_left_toe_mid.jl")
 include("p_right_toe_mid.jl")
 include("Jp_right_toe_mid.jl")
+include("p_left_ankle.jl")
+include("Jp_left_ankle.jl")
+include("p_right_ankle.jl")
+include("Jp_right_ankle.jl")
+
+# walking kinematics
+include("Jp_com_left_wrt_right_ankle.jl")  
+include("p_com_right_wrt_left_ankle.jl")
+include("Jp_com_right_wrt_left_ankle.jl")  
+include("p_com_wrt_left_ankle.jl")
+include("Jp_com_wrt_left_ankle.jl")        
+include("p_com_wrt_right_ankle.jl")
+include("Jp_com_wrt_right_ankle.jl")       
+include("p_left_wrt_right_ankle.jl")
+include("Jp_left_wrt_right_ankle.jl")      
+include("p_right_wrt_left_ankle.jl")
+include("Jp_right_wrt_left_ankle.jl")
+
 
 end
