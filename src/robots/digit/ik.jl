@@ -102,12 +102,12 @@ function walk_ik(θ₀::Vector, θ̇₀::Vector,  vc_des::Vector,
     θ̇ = copy(θ̇₀)
     if swing_foot == :left
         indices = [qleftHipRoll, qleftHipPitch, qleftKnee, qrightKnee]
-        vc_func = kin.p_left_wrt_right_ankle
-        Jvc_func = kin.Jp_left_wrt_right_ankle
+        vc_func = kin.p_left_ankle_wrt_base
+        Jvc_func = kin.Jp_left_ankle_wrt_base
     else
         indices = [qrightHipRoll, qrightHipPitch, qrightKnee, qleftKnee]
-        vc_func = kin.p_right_wrt_left_ankle
-        Jvc_func = kin.Jp_right_wrt_left_ankle
+        vc_func = kin.p_right_ankle_wrt_base
+        Jvc_func = kin.Jp_right_ankle_wrt_base
     end
     θ[qbase_yaw] = 0.0 
     iter = 1

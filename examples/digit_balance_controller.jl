@@ -12,11 +12,12 @@ engine = :MuJoCo
 digit = load_digit(sim; init_pose=[0,0,1.03],engine=engine)
  
 open(digit.sim.mvis.visualizer) 
-Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3, 
+Ts, qs, q̇s = simulate(digit, 1.0; Δt=1e-3, 
         controller=balance_torque_controller, controller_mode=:torque) 
 
 if engine == :PyBullet digit.p.disconnect() end
 
+q, qdot = get_qall_coordinates(digit)
 # setting animation
 println("***setting animation***") 
 setanimation!(digit.sim.mvis, Animation(digit.sim.mvis, Ts, qs))

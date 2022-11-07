@@ -2,9 +2,7 @@ module kinematics
  
 include("p_com_wrt_feet_center.jl")
 include("p_com_wrt_feet.jl")
-include("p_feet_wrt_com.jl")
-include("p_left_foot.jl")
-include("p_right_foot.jl")
+include("p_feet_wrt_com.jl") 
 include("Jp_com_wrt_feet.jl")
 include("p_left_wrist.jl") 
 include("p_right_wrist.jl") 
@@ -49,4 +47,8 @@ include("p_right_wrt_left_ankle.jl")
 include("Jp_right_wrt_left_ankle.jl")
 include("p_com_left_wrt_right_ankle.jl")
 
+include("p_left_ankle_wrt_base.jl")
+include("Jp_left_ankle_wrt_base.jl")
+include("p_right_ankle_wrt_base.jl")
+include("Jp_right_ankle_wrt_base.jl")
 end
