@@ -9,7 +9,7 @@ sim = DigitSim(vis)
 load_digit_vis(sim)
 
 engine = :MuJoCo
-digit = load_digit(sim; engine=engine)
+digit = load_digit(sim; init_pose=[0,0,1.03],engine=engine)
  
 open(digit.sim.mvis.visualizer) 
 Ts, qs, q̇s = simulate(digit, 5.0; Δt=1e-3, 

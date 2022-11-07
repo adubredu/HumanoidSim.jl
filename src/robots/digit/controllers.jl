@@ -170,7 +170,7 @@ function posture_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
 end
 
 function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
-                         digit::Digit;  com_goal=[0.0, 0.0, 0.9], data=nothing)
+                         digit::Digit;  com_goal=[0.0, 0.0, 0.96], data=nothing)
     θ, θ̇  = get_qall_coordinates(digit)
     q_motors = get_motor_positions(digit) 
     step_width = 0.27 
@@ -186,7 +186,7 @@ function balance_torque_controller(q::Vector{Float64}, q̇::Vector{Float64},
     p_right_toe_aligned = Rz' * p_right_toe_world
 
     # Aligned com 
-    p_com_world = kin.p_COM(θ)
+    p_com_world = kin.p_com(θ)
     v_com_world = kin.v_COM(θ, θ̇ )
     p_com_aligned =  Rz' * p_com_world
     v_com_aligned =  Rz' * v_com_world  
