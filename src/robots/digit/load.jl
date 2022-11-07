@@ -18,13 +18,14 @@ function load_digit(sim; init_pose=[0.0, 0.0, 0.92],
         path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
         robot_path = joinpath(path, "digit-v3.xml")
         physics = mujoco.Physics.from_xml_path(robot_path) 
+        physics.data.qpos[0:2] = init_pose
         digit = Digit(-1, physics, sim, engine)
         set_nominal_configuration(digit)
     end
     return digit
 end
 
-function load_mujoco_digit(p, sim, init_pose=[0.0, 0.0, 0.92])
+function load_mujoco_digit(p, sim, init_pose=[0.0, 0.0, 0.95])
     path = joinpath(dirname(pathof(HumanoidSim)), "robots/digit/models")
     robot_path = joinpath(path, "digit-v3.xml")
     physics = p.Physics.from_xml_path(robot_path) 
